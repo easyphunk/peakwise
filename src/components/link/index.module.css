@@ -1,0 +1,36 @@
+.nav__el, .nav__el:link, .nav__el:visited {
+    padding: 8px 0px;
+    color: #f7f7f7;
+    font-size: 1.6rem;
+    text-decoration: none;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s;
+    font-weight: 400;
+    background: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: border-bottom 0.2s, color 0.2s;
+    font-family: inherit;
+}
+
+.nav__el:hover, .nav__el:active {
+    border-bottom: 2px solid #e67e22;
+}
+
+.nav__el:not(:last-child) {
+    margin-right: 3rem;
+}
+
+@media only screen and (max-width: 37.5em) {
+    .nav__el:not(:last-child) {
+        margin-right: 0;
+        margin-bottom: 1.2rem;
+    }
+}
+
+.nav__el:focus {
+    outline: none;
+}
