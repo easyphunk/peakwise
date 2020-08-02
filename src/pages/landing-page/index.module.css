@@ -1,0 +1,31 @@
+h1 {
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 400%;
+    word-spacing: 10px;
+    letter-spacing: 1px;
+    border-top: 3px solid transparent;
+}
+
+h1 span {
+    color: #e67e22;
+}
+
+h2 {
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 370%;
+    word-spacing: 10px;
+    letter-spacing: 1px;
+    margin-bottom: 35px;
+}
+
+.wrapper {
+    position: absolute;
+    width: 50%;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}
