@@ -1,0 +1,12 @@
+.card-container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/background-main.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 1% 8%;
+    flex: 1;
+    position: relative;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 7rem;
+}
