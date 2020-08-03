@@ -7,7 +7,7 @@
 *, *::before, *::after {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 html {
@@ -35,4 +35,5 @@ body {
   background-attachment: fixed;
   flex: 1;
   position: relative;
+  width: 100%;
 }

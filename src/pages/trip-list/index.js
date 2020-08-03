@@ -24,7 +24,6 @@ class TripListPage extends Component {
         const { trips } = this.state;
 
         return trips.map(el => {
-            console.log(el);
             return (
                 <TripCard key={el._id} {...el} />
             )
@@ -37,9 +36,9 @@ class TripListPage extends Component {
 
     render() {
         return (
-            <div className={styles["card-container"]}>
+            <section className={styles["card-container"]}>
                 {this.renderTrips()}
-            </div>
+            </section>
         );
     }
 }
