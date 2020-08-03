@@ -18,42 +18,6 @@
     background-image: linear-gradient( to bottom right, rgba(255, 255, 255, 0.33), rgb(230, 125, 34));
 }
 
-.btn, .btn:link, .btn:visited {
-    font-size: 1.6rem;
-    padding: 1.4rem 3rem;
-    text-transform: uppercase;
-    display: inline-block;
-    text-decoration: none;
-    position: relative;
-    transition: all 0.2s;
-    font-weight: 400;
-    backface-visibility: hidden;
-    border-radius: 5%;
-    cursor: pointer;
-    background-color: #E67E22;
-    color: #fff;
-}
-
-.btn:hover {
-    box-shadow: inset 0 0 0 30px #fff;
-    color: #de7519;
-    border-radius: 5%;
-}
-
-.btn:active {
-    transform: translateY(-3px);
-}
-
-.btn--orange {
-    background-color: #E67E22;
-    color: #fff;
-}
-
-.btn--small {
-    padding: 1.20rem 4rem !important;
-    font-size: 1.4rem !important;
-}
-
 .card-container {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/background-main.jpg);
     background-size: cover;
@@ -162,11 +126,11 @@
     color: #fff;
 }
 
-.card__ratings {
+.card__likes {
     grid-row: 2 / 3;
 }
 
-.card .btn-small, .card .btn {
+.card .btn {
     grid-row: 1 / 3;
     justify-self: end;
     align-self: center;

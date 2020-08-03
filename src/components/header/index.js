@@ -12,7 +12,7 @@ const Header = () => {
                 <LinkComponent href="/create-article" title="Create Article"/>
                 <LinkComponent href="/login" title="Login"/>
                 <LinkComponent href="/register" title="Register"/>
-                <a className={styles.nav__el} href="/profile"><img className={styles["nav__user-img"]} src="/profile-photo-default.png" alt="profile" /><span>Profile</span></a>
+                <a className={styles.nav__el} href="/profile"><span>Profile</span><img className={styles["nav__user-img"]} src="/profile-photo-default.png" alt="profile" /></a>
             </nav>
         </header>
     )

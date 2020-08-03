@@ -23,7 +23,7 @@ const TripCard = (props) => {
         <div className={styles.card__footer}>
             <p><span className={styles["card__footer-value"]}>{props.views}</span> <span className={styles["card__footer-text"]}>views</span>
             </p>
-            <p className={styles.card__ratings}><span className={styles["card__footer-value"]}>{props.likes}</span> <span
+            <p className={styles.card__likes}><span className={styles["card__footer-value"]}>{props.likes}</span> <span
                 className={styles["card__footer-text"]}>likes</span></p>
                 <Button title="Details" href={`/explore/${props._id}`} stylePref="regular" />
         </div>
