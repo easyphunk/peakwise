@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Header from './components/header';
 import LandingPage from './pages/landing-page';
 import TripListPage from './pages/trip-list';
@@ -7,7 +6,7 @@ import Footer from './components/footer';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Header />
       <LandingPage />
       <TripListPage />

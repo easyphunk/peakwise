@@ -1,5 +1,6 @@
 .header {
-  padding: 0 5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1vh 5vw;
   height: 9%;
   position: relative;
   z-index: 100;
@@ -8,12 +9,16 @@
   align-items: center;
 }
 
+.header:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 @media only screen and (max-width: 62.5em) {
   .header {
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-      flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
   }
 }
 
@@ -23,64 +28,64 @@
 
 @media only screen and (max-width: 62.5em) {
   .header__logo {
-      order: -1;
-      margin-bottom: 1.5rem;
+    order: -1;
+    margin-bottom: 1.5rem;
   }
 }
 
 .nav {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 @media only screen and (max-width: 37.5em) {
-    .nav {
-        flex-direction: column;
-    }
+  .nav {
+    flex-direction: column;
+  }
 }
 
 .nav__el, .nav__el:link, .nav__el:visited {
-    padding: 8px 0px;
-    color: #f7f7f7;
-    font-size: 1.6rem;
-    text-decoration: none;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    align-items: center;
-    transition: all 0.2s;
-    font-weight: 400;
-    background: none;
-    border-bottom: 2px solid transparent;
-    cursor: pointer;
-    transition: border-bottom 0.2s, color 0.2s;
-    font-family: inherit;
+  padding: 8px 0px;
+  color: #f7f7f7;
+  font-size: 1.6rem;
+  text-decoration: none;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s;
+  font-weight: 400;
+  background: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: border-bottom 0.2s, color 0.2s;
+  font-family: inherit;
 }
 
 .nav__el:hover, .nav__el:active {
-    border-bottom: 2px solid #e67e22;
+  border-bottom: 2px solid #e67e22;
 }
 
 .nav__el:not(:last-child) {
-    margin-right: 3rem;
+  margin-right: 3rem;
 }
 
 @media only screen and (max-width: 37.5em) {
-    .nav__el:not(:last-child) {
-        margin-right: 0;
-        margin-bottom: 1.2rem;
-    }
+  .nav__el:not(:last-child) {
+    margin-right: 0;
+    margin-bottom: 1.2rem;
+  }
 }
 
 .nav__el:focus {
-    outline: none;
+  outline: none;
 }
 
 .nav__user-img {
-    height: 3.5rem;
-    width: 3.5rem;
-    border-radius: 50%;
-    margin-right: 1rem;
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 50%;
+  margin-left: 1rem;
 }
 
 /* .nav__search {
