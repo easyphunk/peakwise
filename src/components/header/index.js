@@ -1,13 +1,12 @@
 import React from 'react';
 import styles from './index.module.css';
-import LinkComponent from '../link'
+import Logo from '../logo';
+import LinkComponent from '../link';
 
 const Header = () => {
     return (
         <header className={styles.header}>
-            <div className={styles.header__logo}>
-                <a href="/"><img src="/logo-white.png" alt="Logo" /></a>
-            </div>
+            <Logo color="white" href="/" />
             <nav className={styles.nav}>
                 <LinkComponent href="/explore" title="Explore"/>
                 <LinkComponent href="/create-article" title="Create Article"/>
