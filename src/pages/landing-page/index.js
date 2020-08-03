@@ -8,8 +8,8 @@ const LandingPage = () => {
             <section className={styles.wrapper}>
                 <h1><span>PEAKWISE</span></h1>
                 <h2>Adjust your altitude.</h2>
-                <Button title="Login" href="/login" orange={true} />
-                <Button title="Register" href="/register" orange={false} />
+                <Button title="Login" href="/login" stylePref="orange" />
+                <Button title="Register" href="/register" stylePref="wide" />
             </section>
         </div>
     )
