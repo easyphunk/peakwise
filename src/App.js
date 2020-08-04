@@ -6,6 +6,7 @@ import Footer from './components/footer';
 import TripDetailsPage from './pages/trip-details';
 import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
+import CreateTripPage from './pages/create-trip'
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
       <Header />
       {/* <LandingPage /> */}
       {/* <LoginPage /> */}
-      <RegisterPage />
-      {/* <TripListPage /> */}
+      {/* <RegisterPage /> */}
+      <CreateTripPage />
+      <TripListPage />
       {/* <TripDetailsPage /> */}
       <Footer />
     </div>
