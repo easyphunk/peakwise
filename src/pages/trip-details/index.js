@@ -12,7 +12,7 @@ class TripDetailsPage extends Component {
     }
 
     getTrip = async () => {
-        // TODO
+        // TODO - modify to pick a certain trip ID, the below one is for testing purposes "5f281ba027d4981c8cf92bc4"
         const tripPromise = await fetch('http://localhost:9999/api/v1/trips/5f281ba027d4981c8cf92bc4');
         const trip = await tripPromise.json();
 
