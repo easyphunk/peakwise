@@ -5,13 +5,15 @@ import TripListPage from './pages/trip-list';
 import Footer from './components/footer';
 import TripDetailsPage from './pages/trip-details';
 import LoginPage from './pages/login';
+import RegisterPage from './pages/register';
 
 function App() {
   return (
     <div>
       <Header />
       {/* <LandingPage /> */}
-      <LoginPage />
+      {/* <LoginPage /> */}
+      <RegisterPage />
       {/* <TripListPage /> */}
       {/* <TripDetailsPage /> */}
       <Footer />
