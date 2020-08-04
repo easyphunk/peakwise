@@ -1,4 +1,4 @@
-.login-form {
+.register-form {
     position: relative;
     margin: 1vh auto;
     max-width: 55rem;
@@ -12,6 +12,10 @@
 
 .form__group:not(:last-child) {
     margin-bottom: 2.5rem;
+}
+
+.ma-bt-md {
+    margin-bottom: 3rem !important;
 }
 
 .form__input {
@@ -46,14 +50,11 @@
 }
 
 .form__label {
+    color: #fff;
     display: block;
     font-size: 1.6rem;
     font-weight: 700;
     margin-bottom: 0.75rem;
-}
-
-.ma-bt-md {
-    margin-bottom: 3rem !important;
 }
 
 .heading-secondary {
