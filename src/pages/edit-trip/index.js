@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from '../../components/button';
 import styles from './index.module.css';
 
-class CreateTripPage extends Component {
+class EditTripPage extends Component {
     constructor(props) {
         super(props);
 
@@ -21,6 +21,16 @@ class CreateTripPage extends Component {
         }
     }
 
+    getTrip = async () => {
+        // TODO
+        const tripPromise = await fetch('http://localhost:9999/api/v1/trips/5f281ba027d4981c8cf92bc4');
+        const trip = await tripPromise.json();
+
+        this.setState({
+            ...trip
+        });
+    }
+
     changeHandler = (event) => {
         const targetName = event.target.name;
         const targetValue = event.target.value
@@ -34,6 +44,9 @@ class CreateTripPage extends Component {
         return event.key === 'e' && event.preventDefault()
     }
 
+    componentDidMount() {
+        this.getTrip();
+    }
     render() {
         return (
             <div className={styles["user-view"]}>
@@ -88,4 +101,4 @@ class CreateTripPage extends Component {
     }
 }
 
-export default CreateTripPage;
+export default EditTripPage;
