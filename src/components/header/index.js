@@ -16,7 +16,6 @@ const Header = () => {
                             return (
                                 <LinkComponent key={link.title} title={link.title} href={link.href} >
                                     <img className={styles["nav__user-img"]} src="/profile-photo-default.png" alt="profile" />
-
                                 </LinkComponent>
                             )
                         } else {

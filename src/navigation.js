@@ -7,6 +7,7 @@ import ExplorePage from './pages/explore-page';
 import CreateTripPage from './pages/create-trip-page';
 import TripDetailsPage from './pages/trip-details-page';
 import TripEditPage from './pages/trip-edit-page';
+import ProfilePage from './pages/profile-page';
 
 const Navigation = () => {
     return (
@@ -17,8 +18,7 @@ const Navigation = () => {
                 <Route path="/register" component={RegisterPage} />
                 <Route path="/create-article" component={CreateTripPage} />
                 <Route path="/explore" exact component={ExplorePage} />
-                {/* TODO
-                <Route path="/profile/:userid" component={ProfilePage} /> */}
+                <Route path="/profile/:userid" component={ProfilePage} />
                 <Route path="/explore/:tripid" component={TripDetailsPage} />
                 <Route path="/edit/:tripid" component={TripEditPage} />
             </Switch>

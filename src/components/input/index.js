@@ -10,7 +10,6 @@ const Input = ({ name, value, type, label, placeholder, required, keyPressHandle
             {
                 type === 'textarea' ? <textarea className={styles.text__input} id={name} value={value} name={name} type={type} step={step} placeholder={placeholder} required={required} onKeyDown={keyPressHandler} onChange={onChange} /> : <input className={styles.form__input} id={name} value={value} name={name} type={type} step={step} placeholder={placeholder} required={required} onKeyDown={keyPressHandler} onChange={onChange} />
             }
-            
         </div>
     )
 }
