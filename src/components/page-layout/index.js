@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../header';
+import Footer from '../footer';
 import styles from './index.module.css';
 
 const PageLayout = (props) => {
@@ -7,6 +8,7 @@ const PageLayout = (props) => {
         <div className={styles.wrapper}>
             <Header />
             {props.children}
+            <Footer />
         </div>
     )
 }
