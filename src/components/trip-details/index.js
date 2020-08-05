@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from './index.module.css';
 import Button from '../../components/button';
 
-class TripDetailsPage extends Component {
+class TripDetails extends Component {
     constructor(props) {
         super(props);
 
@@ -171,4 +171,4 @@ class TripDetailsPage extends Component {
     }
 }
 
-export default TripDetailsPage;
+export default TripDetails;

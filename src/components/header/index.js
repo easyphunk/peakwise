@@ -2,17 +2,31 @@ import React from 'react';
 import styles from './index.module.css';
 import Logo from '../logo';
 import LinkComponent from '../link';
+import getHeaderLinks from '../../utils/headerLinks';
 
 const Header = () => {
+    const linkList = getHeaderLinks();
     return (
         <header className={styles.header}>
             <Logo color="white" href="/" />
             <nav className={styles.nav}>
-                <LinkComponent href="/explore" title="Explore"/>
-                <LinkComponent href="/create-article" title="Create Article"/>
-                <LinkComponent href="/login" title="Login"/>
-                <LinkComponent href="/register" title="Register"/>
-                <a className={styles.nav__el} href="/profile"><span>Profile</span><img className={styles["nav__user-img"]} src="/profile-photo-default.png" alt="profile" /></a>
+                {
+                    linkList.map(link => {
+                        if (link.title === "Profile") {
+                            return (
+                                <LinkComponent key={link.title} title={link.title} href={link.href} >
+                                    <img className={styles["nav__user-img"]} src="/profile-photo-default.png" alt="profile" />
+
+                                </LinkComponent>
+                            )
+                        } else {
+                            return (
+                                <LinkComponent key={link.title} title={link.title} href={link.href} />
+                            )
+                        }
+
+                    })
+                }
             </nav>
         </header>
     )
