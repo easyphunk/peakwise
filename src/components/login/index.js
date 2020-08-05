@@ -38,7 +38,7 @@ class LoginPage extends Component {
                             )
                         })
                     }
-                    <Button title="Login" href="#" stylePref="regular" />
+                    <Button title="Login" href="#" stylePref="regular" toSubmit={true} />
                 </form>
             </div>
         )

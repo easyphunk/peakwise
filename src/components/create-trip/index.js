@@ -56,7 +56,7 @@ class CreateTrip extends Component {
                                 })
                             }
                             <div className={styles.form__group + ' ' + styles.right}>
-                                <Button title="Save changes" href="#" stylePref="regular" />
+                                <Button title="Save changes" href="#" stylePref="regular" toSubmit={true} />
                             </div>
                         </form>
                     </div>
