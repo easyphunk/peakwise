@@ -6,6 +6,7 @@ import RegisterPage from './pages/register-page';
 import ExplorePage from './pages/explore-page';
 import CreateTripPage from './pages/create-trip-page';
 import TripDetailsPage from './pages/trip-details-page';
+import TripEditPage from './pages/trip-edit-page';
 
 const Navigation = () => {
     return (
@@ -19,6 +20,7 @@ const Navigation = () => {
                 {/* TODO
                 <Route path="/profile/:userid" component={ProfilePage} /> */}
                 <Route path="/explore/:tripid" component={TripDetailsPage} />
+                <Route path="/edit/:tripid" component={TripEditPage} />
             </Switch>
         </BrowserRouter>
     )

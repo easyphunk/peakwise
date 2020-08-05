@@ -1,24 +1,51 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from './index.module.css';
 import Button from '../../components/button';
+import Input from '../input';
+import getInputFields from '../../utils/inputFields';
+import onChange from '../../utils/inputChangeHandler';
 
-const RegisterPage = () => {
-    return (
-        <div className={styles["register-form"]}>
-        <h2 className={styles["heading-secondary"] + ' ' + styles["ma-bt-lg"]}>Create your account</h2>
-        <form className={styles.form}>
-            <div className={styles.form__group}><label className={styles.form__label} htmlFor="username">Username</label><input
-                    className={styles.form__input} id="username" type="text" placeholder="username" required={true} /></div>
-            <div className={styles.form__group}><label className={styles.form__label} htmlFor="email">Email address</label><input
-                    className={styles.form__input} id="email" type="email" placeholder="you@example.com" required={true} /></div>
-            <div className={styles.form__group + ' ' + styles["ma-bt-md"]}><label className={styles.form__label} htmlFor="password">Password</label><input
-                    className={styles.form__input} id="password" type="password" placeholder="••••••••" required={true}/></div>
-            <div className={styles.form__group + ' ' + styles["ma-bt-md"]}><label className={styles.form__label} htmlFor="rePassword">Repeat Password</label><input
-                    className={styles.form__input} id="rePassword" type="password" placeholder="••••••••" required={true}/></div>
-            <Button title="Register" href="#" stylePref="regular" />
-        </form>
-    </div>
-    )
+class RegisterPage extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            username: '',
+            email: '',
+            password: '',
+            rePassword: ''
+        }
+    }
+
+    render() {
+
+        const credentialsFields = getInputFields(this.props).register;
+
+        return (
+            <div className={styles["register-form"]}>
+                <h2 className={styles["heading-secondary"] + ' ' + styles["ma-bt-lg"]}>Create your account</h2>
+                <form>
+                    {
+                        credentialsFields.map(field => {
+                            return (
+                                <Input
+                                    name={field.name}
+                                    type={field.type}
+                                    label={field.label}
+                                    value={this.state[field.name]}
+                                    placeholder={field.placeholder}
+                                    require={field.required}
+                                    onChange={(e) => onChange(e, this)}
+                                    key={field.name}
+                                />
+                            )
+                        })
+                    }
+                    <Button title="Register" href="#" stylePref="regular" />
+                </form>
+            </div>
+        )
+    }
 }
 
 export default RegisterPage;
