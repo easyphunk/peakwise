@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './index.module.css';
 import Button from '../../components/button';
+import { withRouter } from 'react-router-dom';
 
 class TripDetails extends Component {
     constructor(props) {
@@ -11,9 +12,13 @@ class TripDetails extends Component {
         }
     }
 
-    getTrip = async () => {
-        // TODO - modify to pick a certain trip ID, the below one is for testing purposes "5f281ba027d4981c8cf92bc4"
-        const tripPromise = await fetch('http://localhost:9999/api/v1/trips/5f281ba027d4981c8cf92bc4');
+    getTrip = async (id) => {
+        const tripPromise = await fetch(`http://localhost:9999/api/v1/trips/${id}`);
+
+        if(!tripPromise.ok) {
+            this.props.history.push('/error');
+        }
+        
         const trip = await tripPromise.json();
 
         this.setState({
@@ -22,7 +27,7 @@ class TripDetails extends Component {
     }
 
     componentDidMount() {
-        this.getTrip();
+        this.getTrip(this.props.match.params.tripid);
     }
 
     render() {
@@ -103,7 +108,7 @@ class TripDetails extends Component {
                             <p className={styles.wtc__text}>{trip.whenToClimb}</p>
                             <Button title="Like" href="#" stylePref="regular" />
                             <Button title="Conquered !" href="#" stylePref="regular" />
-                            <Button title="Edit" href="#" stylePref="regular" />
+                            <Button title="Edit" href={`/edit/${this.props.match.params.tripid}`} stylePref="regular" />
                         </div>
                     </div>
                 </section>
@@ -171,4 +176,4 @@ class TripDetails extends Component {
     }
 }
 
-export default TripDetails;
+export default withRouter(TripDetails);

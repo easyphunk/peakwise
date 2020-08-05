@@ -8,6 +8,7 @@ import CreateTripPage from './pages/create-trip-page';
 import TripDetailsPage from './pages/trip-details-page';
 import TripEditPage from './pages/trip-edit-page';
 import ProfilePage from './pages/profile-page';
+import ErrorPage from './pages/error-page';
 
 const Navigation = () => {
     return (
@@ -21,6 +22,7 @@ const Navigation = () => {
                 <Route path="/profile/:userid" component={ProfilePage} />
                 <Route path="/explore/:tripid" component={TripDetailsPage} />
                 <Route path="/edit/:tripid" component={TripEditPage} />
+                <Route patch="/error" component={ErrorPage} />
             </Switch>
         </BrowserRouter>
     )

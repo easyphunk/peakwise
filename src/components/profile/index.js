@@ -3,6 +3,7 @@ import styles from './index.module.css';
 import Button from '../button';
 import SideNav from '../side-nav';
 import { withRouter } from 'react-router-dom';
+import PageLayout from '../page-layout';
 
 class Profile extends Component {
     constructor(props) {
@@ -15,6 +16,11 @@ class Profile extends Component {
 
     getUser = async (id) => {
         const userPromise = await fetch(`http://localhost:9999/api/v1/users/${id}`);
+        
+        if(!userPromise.ok) {
+            this.props.history.push('/error');
+        }
+        
         const user = await userPromise.json();
 
         this.setState({
