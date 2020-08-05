@@ -1,10 +1,7 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+::selection {
+  background-color: #e67e22;
+  color: #fff;
 }
 
 code {
@@ -12,11 +9,6 @@ code {
     monospace;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
-::selection {
-  background-color: #e67e22;
-  color: #fff;
-}
 
 *, *::before, *::after {
   margin: 0;
@@ -30,21 +22,23 @@ html {
 }
 
 body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
   font-weight: 400;
   font-family: 'Lato', sans-serif;
   color: #777;
-  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
   display: flex;
   text-rendering: optimizeLegibility;
   flex-direction: column;
   overflow-x: hidden;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/background-main.jpg);
+  background-image: url(/background-main.jpg);
   background-size: cover;
   background-position: center;
-  height: 100vh;
   background-attachment: fixed;
   flex: 1;
   position: relative;
-  width: 100%;
 }

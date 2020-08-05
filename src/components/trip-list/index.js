@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from './index.module.css';
 import TripCard from '../../components/trip-card';
 
-class TripListPage extends Component {
+class TripList extends Component {
     constructor(props) {
         super(props);
 
@@ -43,4 +43,4 @@ class TripListPage extends Component {
     }
 }
 
-export default TripListPage;
+export default TripList;

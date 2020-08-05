@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './index.module.css';
+import { Link } from 'react-router-dom';
 
-const LinkComponent = ({ title, href }) => {
+const LinkComponent = (props) => {
     return (
-        <a className={styles.nav__el} href={href}>{title}</a>
+        <Link className={styles.nav__el} to={props.href}>{props.title}{props.children}</Link>
     )
 }
 

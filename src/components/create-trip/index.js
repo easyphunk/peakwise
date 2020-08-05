@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Button from '../../components/button';
+import Button from '../button';
 import styles from './index.module.css';
 
-class CreateTripPage extends Component {
+class CreateTrip extends Component {
     constructor(props) {
         super(props);
 
@@ -88,4 +88,4 @@ class CreateTripPage extends Component {
     }
 }
 
-export default CreateTripPage;
+export default CreateTrip;
