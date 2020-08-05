@@ -41,7 +41,7 @@ class RegisterPage extends Component {
                             )
                         })
                     }
-                    <Button title="Register" href="#" stylePref="regular" />
+                    <Button title="Register" href="#" stylePref="regular" toSubmit={true} />
                 </form>
             </div>
         )
