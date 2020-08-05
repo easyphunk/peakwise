@@ -13,6 +13,11 @@ class TripList extends Component {
 
     getTrips = async () => {
         const tripsPromise = await fetch('http://localhost:9999/api/v1/trips');
+
+        if(!tripsPromise.ok) {
+            this.props.history.push('/error');
+        }
+
         const trips = await tripsPromise.json();
 
         this.setState({

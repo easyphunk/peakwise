@@ -4,6 +4,8 @@ import styles from './index.module.css';
 import Input from '../input';
 import getInputFields from '../../utils/inputFields';
 import onChange from '../../utils/inputChangeHandler';
+import { withRouter } from 'react-router-dom';
+
 
 class EditTripPage extends Component {
     constructor(props) {
@@ -24,9 +26,13 @@ class EditTripPage extends Component {
         }
     }
 
-    getTrip = async () => {
-        // TODO
-        const tripPromise = await fetch('http://localhost:9999/api/v1/trips/5f281ba027d4981c8cf92bc4');
+    getTrip = async (id) => {
+        const tripPromise = await fetch(`http://localhost:9999/api/v1/trips/${id}`);
+
+        if(!tripPromise.ok) {
+            this.props.history.push('/error');
+        }
+
         const trip = await tripPromise.json();
 
         this.setState({
@@ -39,7 +45,7 @@ class EditTripPage extends Component {
     }
 
     componentDidMount() {
-        this.getTrip();
+        this.getTrip(this.props.match.params.tripid);
     }
 
     render() {
@@ -82,4 +88,4 @@ class EditTripPage extends Component {
     }
 }
 
-export default EditTripPage;
+export default withRouter(EditTripPage);

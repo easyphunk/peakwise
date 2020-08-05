@@ -2,7 +2,7 @@ import React from 'react';
 import PageLayout from '../../components/page-layout';
 import TripDetails from '../../components/trip-details';
 
-const CreateTripPage = () => {
+const TripDetailsPage = () => {
     return (
         <PageLayout>
             <TripDetails />
@@ -10,4 +10,4 @@ const CreateTripPage = () => {
     )
 }
 
-export default CreateTripPage;
+export default TripDetailsPage;
