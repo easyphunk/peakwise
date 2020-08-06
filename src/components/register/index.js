@@ -4,6 +4,8 @@ import Button from '../../components/button';
 import Input from '../input';
 import getInputFields from '../../utils/inputFields';
 import onChange from '../../utils/inputChangeHandler';
+import { withRouter } from 'react-router-dom';
+import authService from '../../utils/authService';
 
 class RegisterPage extends Component {
     constructor(props) {
@@ -17,6 +19,28 @@ class RegisterPage extends Component {
         }
     }
 
+    handleSubmit = async (event) => {
+        event.preventDefault();
+        const { username, email, password, rePassword } = this.state;
+
+        await authService('http://localhost:9999/api/v1/users/register',
+            {
+                username,
+                email,
+                password,
+                rePassword
+            }, () => {
+                // TODO
+                this.props.history.push('/explore');
+            }, () => {
+                // TODO
+                console.log('nah boi')
+                this.props.history.push('/error');
+            }
+        );
+    }
+
+
     render() {
 
         const credentialsFields = getInputFields(this.props).register;
@@ -24,7 +48,7 @@ class RegisterPage extends Component {
         return (
             <div className={styles["register-form"]}>
                 <h2 className={styles["heading-secondary"] + ' ' + styles["ma-bt-lg"]}>Create your account</h2>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     {
                         credentialsFields.map(field => {
                             return (
@@ -48,4 +72,4 @@ class RegisterPage extends Component {
     }
 }
 
-export default RegisterPage;
+export default withRouter(RegisterPage);
