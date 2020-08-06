@@ -6,6 +6,7 @@ import getInputFields from '../../utils/inputFields';
 import onChange from '../../utils/inputChangeHandler';
 import { withRouter } from 'react-router-dom';
 import authService from '../../utils/authService';
+import UserContext from '../../UserContext';
 
 class RegisterPage extends Component {
     constructor(props) {
@@ -19,6 +20,8 @@ class RegisterPage extends Component {
         }
     }
 
+    static contextType = UserContext;
+
     handleSubmit = async (event) => {
         event.preventDefault();
         const { username, email, password, rePassword } = this.state;
@@ -29,8 +32,9 @@ class RegisterPage extends Component {
                 email,
                 password,
                 rePassword
-            }, () => {
+            }, (user) => {
                 // TODO
+                this.context.logIn(user);
                 this.props.history.push('/explore');
             }, () => {
                 // TODO
