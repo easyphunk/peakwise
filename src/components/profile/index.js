@@ -3,7 +3,6 @@ import styles from './index.module.css';
 import Button from '../button';
 import SideNav from '../side-nav';
 import { withRouter } from 'react-router-dom';
-import PageLayout from '../page-layout';
 
 class Profile extends Component {
     constructor(props) {

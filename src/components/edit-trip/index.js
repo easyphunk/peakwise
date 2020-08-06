@@ -5,7 +5,7 @@ import Input from '../input';
 import getInputFields from '../../utils/inputFields';
 import onChange from '../../utils/inputChangeHandler';
 import { withRouter } from 'react-router-dom';
-
+import tripService from '../../utils/tripService';
 
 class EditTripPage extends Component {
     constructor(props) {
@@ -18,7 +18,9 @@ class EditTripPage extends Component {
             longitude: '',
             elevation: '',
             coverImage: '',
-            images: '',
+            image1: '',
+            image2: '',
+            image3: '',
             overview: '',
             climbingHistory: '',
             whenToClimb: '',
@@ -29,7 +31,7 @@ class EditTripPage extends Component {
     getTrip = async (id) => {
         const tripPromise = await fetch(`http://localhost:9999/api/v1/trips/${id}`);
 
-        if(!tripPromise.ok) {
+        if (!tripPromise.ok) {
             this.props.history.push('/error');
         }
 
@@ -48,16 +50,29 @@ class EditTripPage extends Component {
         this.getTrip(this.props.match.params.tripid);
     }
 
+    handleSubmit = async (event) => {
+        event.preventDefault();
+        const updatedTripObj = this.state;
+
+        await tripService(`http://localhost:9999/api/v1/trips/${this.props.match.params.tripid}`, { ...updatedTripObj }, 'PATCH',
+            (tripId) => {
+                this.props.history.push(`/explore/${tripId}`);
+            }, () => {
+                // TODO
+                console.log('ERROR >>>> <<<<');
+            }
+        )
+    }
+
     render() {
-        console.log(this.props);
-        const tripFields = getInputFields(this.props).trip;
+        const tripFields = getInputFields().trip;
 
         return (
             <div className={styles["user-view"]}>
                 <div className={styles["user-view__content"]}>
                     <div className={styles["user-view__form-container"]}>
                         <h2 className={styles["heading-secondary"] + ' ' + styles["ma-bt-md"]}>Edit Peak Article</h2>
-                        <form>
+                        <form onSubmit={this.handleSubmit}>
                             {
                                 tripFields.map(field => {
                                     return (

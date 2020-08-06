@@ -4,6 +4,8 @@ import styles from './index.module.css';
 import Input from '../input';
 import getInputFields from '../../utils/inputFields';
 import onChange from '../../utils/inputChangeHandler';
+import tripService from '../../utils/tripService';
+import { withRouter } from 'react-router-dom';
 
 class CreateTrip extends Component {
     constructor(props) {
@@ -16,7 +18,9 @@ class CreateTrip extends Component {
             longitude: '',
             elevation: '',
             coverImage: '',
-            images: '',
+            image1: '',
+            image2: '',
+            image3: '',
             overview: '',
             climbingHistory: '',
             whenToClimb: '',
@@ -28,6 +32,20 @@ class CreateTrip extends Component {
         return event.key === 'e' && event.preventDefault()
     }
 
+    handleSubmit = async (event) => {
+        event.preventDefault();
+        const newTripObj = this.state;
+
+        await tripService('http://localhost:9999/api/v1/trips', { ...newTripObj }, 'POST',
+            (tripId) => {
+                this.props.history.push(`/explore/${tripId}`);
+            }, () => {
+                // TODO
+                console.log('ERROR >>>> <<<<');
+            }
+        )
+    }
+
     render() {
         const tripFields = getInputFields(this.props).trip;
 
@@ -36,7 +54,7 @@ class CreateTrip extends Component {
                 <div className={styles["user-view__content"]}>
                     <div className={styles["user-view__form-container"]}>
                         <h2 className={styles["heading-secondary"] + ' ' + styles["ma-bt-md"]}>Create Peak Article</h2>
-                        <form>
+                        <form onSubmit={this.handleSubmit}>
                             {
                                 tripFields.map(field => {
                                     return (
@@ -50,7 +68,7 @@ class CreateTrip extends Component {
                                             require={field.required}
                                             onChange={(e) => onChange(e, this)}
                                             key={field.name}
-                                            keyPressHandler={field.type === 'Number' ? (e) => this.avoidEinNumberInput(e) : () => {}}
+                                            keyPressHandler={field.type === 'Number' ? (e) => this.avoidEinNumberInput(e) : () => { }}
                                         />
                                     )
                                 })
@@ -66,4 +84,4 @@ class CreateTrip extends Component {
     }
 }
 
-export default CreateTrip;
+export default withRouter(CreateTrip);

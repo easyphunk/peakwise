@@ -42,7 +42,7 @@ const getInputFields = () => {
             },
             {
                 name: 'rePassword',
-                type: 'rePassword',
+                type: 'password',
                 label: 'Repeat Password',
                 placeholder: '••••••••',
                 required: true
@@ -96,10 +96,24 @@ const getInputFields = () => {
                 required: true
             },
             {
-                name: 'images',
+                name: 'image1',
                 type: 'text',
-                label: '3 image links, separated by commas',
-                placeholder: 'e.g. http://img.com/img1.jpg, http://img.com/img2.jpg, http://img.com/img3.jpg',
+                label: 'Thumbnail image 1',
+                placeholder: 'e.g. http://img.com/img1.jpg',
+                required: true
+            },
+            {
+                name: 'image2',
+                type: 'text',
+                label: 'Thumbnail image 2',
+                placeholder: 'e.g. http://img.com/img1.jpg',
+                required: true
+            },
+            {
+                name: 'image3',
+                type: 'text',
+                label: 'Thumbnail image 3',
+                placeholder: 'e.g. http://img.com/img1.jpg',
                 required: true
             },
             {

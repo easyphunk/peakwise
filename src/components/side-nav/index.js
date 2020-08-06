@@ -11,6 +11,8 @@ const SideNav = (props) => {
                 <li><LinkComponent href={`/favorites/${userid}`} title="Favorite Peaks"/></li>
                 <li><LinkComponent href={`/conquered/${userid}`} title="Conquered Peaks"/></li>
                 <li><LinkComponent href={`/journal/${userid}`} title="My Journal"/></li>
+                <li>&nbsp;</li>
+                <li><LinkComponent href={'/logout'} title="Logout"/></li>
             </ul>
         </nav>
     )

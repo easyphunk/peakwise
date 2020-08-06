@@ -28,6 +28,7 @@ class TripDetails extends Component {
 
     componentDidMount() {
         this.getTrip(this.props.match.params.tripid);
+        window.scrollTo(0, 0);
     }
 
     render() {
@@ -89,11 +90,11 @@ class TripDetails extends Component {
 
                 <section className={styles["section-pictures"]}>
                     <div className={styles["picture-box"]}><img className={styles["picture-box__img"] + ' ' + styles["picture-box__img"]}
-                        src={trip.images ? trip.images[0] : null} alt={trip.name + ' 1'} /></div>
+                        src={trip.image1 ? trip.image1 : null} alt={trip.name + ' 1'} /></div>
                     <div className={styles["picture-box"]}><img className={styles["picture-box__img"] + ' ' + styles["picture-box__img"]}
-                        src={trip.images ? trip.images[1] : null} alt={trip.name + ' 2'} /></div>
+                        src={trip.image2 ? trip.image2 : null} alt={trip.name + ' 2'} /></div>
                     <div className={styles["picture-box"]}><img className={styles["picture-box__img"] + ' ' + styles["picture-box__img"]}
-                        src={trip.images ? trip.images[2] : null} alt={trip.name + ' 3'} /></div>
+                        src={trip.image3 ? trip.image3 : null} alt={trip.name + ' 3'} /></div>
                 </section>
 
                 <section className={styles["section-wtc"]}>

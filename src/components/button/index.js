@@ -18,7 +18,7 @@ const Button = ({ title, href, stylePref, toSubmit }) => {
     }
 
     return (
-        toSubmit === undefined ? <a className={styles[styleChoice]} href={href}>{title}</a> : <button className={styles[styleChoice]}>{title}</button>
+        toSubmit === undefined ? <a className={styles[styleChoice]} href={href}>{title}</a> : <button type="submit" className={styles[styleChoice]}>{title}</button>
     )
 }
 
