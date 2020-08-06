@@ -6,6 +6,7 @@ import getInputFields from '../../utils/inputFields';
 import onChange from '../../utils/inputChangeHandler';
 import { withRouter } from 'react-router-dom';
 import authService from '../../utils/authService';
+import UserContext from '../../UserContext';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -18,6 +19,8 @@ class LoginPage extends Component {
         }
     }
 
+    static contextType = UserContext;
+
     handleSubmit = async (event) => {
         event.preventDefault();
         const { username, password } = this.state;
@@ -26,9 +29,11 @@ class LoginPage extends Component {
             {
                 username,
                 password
-            }, () => {
+            }, (user) => {
                 // TODO
-                this.props.history.push('/explore');
+                this.context.logIn(user);
+                this.props.history.push(`/explore`);
+
             }, () => {
                 // TODO
                 console.log('nah boi')
@@ -39,7 +44,7 @@ class LoginPage extends Component {
 
     render() {
         const credentialsFields = getInputFields().login;
-
+        
         return (
             <div className={styles["login-form"]}>
                 <h2 className={styles["heading-secondary"] + ' ' + styles["ma-bt-lg"]}>Log into your account</h2>

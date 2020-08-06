@@ -3,6 +3,7 @@ import styles from './index.module.css';
 import Button from '../button';
 import SideNav from '../side-nav';
 import { withRouter } from 'react-router-dom';
+import UserContext from '../../UserContext';
 
 class Profile extends Component {
     constructor(props) {
@@ -12,6 +13,8 @@ class Profile extends Component {
             user: {}
         }
     }
+
+    static contextType = UserContext;
 
     getUser = async (id) => {
         const userPromise = await fetch(`http://localhost:9999/api/v1/users/${id}`);
@@ -28,7 +31,12 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        this.getUser(this.props.match.params.userid);
+        this.getUser(this.context.user._id);
+    }
+
+    logOut = () => {
+        this.context.logOut();
+        this.props.history.push('/');
     }
 
     render() {
@@ -40,27 +48,27 @@ class Profile extends Component {
                 <div className={styles["user-view__content"]}>
                     <div className={styles["user-view__form-container"]}>
                         <h2 className={styles["heading-secondary"] + ' ' + styles["ma-bt-md"]}>Your account settings</h2>
-                        <form className={styles["form-user-data"]}>
+                        <div className={styles["form-user-data"]}>
                             <div className={styles.form__group}><p className={styles.form__label}>Username: {user.username}</p></div>
                             <div className={styles.form__group + ' ' + styles["ma-bt-md"]}><p className={styles.form__label}>Email: {user.email}</p></div>
-                            <Button title="#PLACEHOLDER" stylePref="orange" toSubmit={true} />
+                            <Button title="Logout" stylePref="orange" toSubmit={true} onClick={() => this.logOut()}/>
                             <div className={styles.form__group + ' ' + styles["form__photo-upload"]}>
                                 <img className={styles["form__user-photo"]} src="/placeholder-img.jpg" alt="User" />
                                 <p>#PLACEHOLDER PHOTO UPLOAD</p>
                             </div>
                             <Button title="#PLACEHOLDER" stylePref="orange" toSubmit={true} />
                             <div className={styles.form__group + ' ' + styles["form__photo-upload"]}></div>
-                        </form>
+                        </div>
                     </div>
                     <div className={styles.line}>&nbsp;</div>
                     <div className={styles["user-view__form-container"]}>
                         <h2 className={styles["heading-secondary"] + ' ' + styles["ma-bt-md"]}>Other info</h2>
-                        <form className={styles["form-user-password"]}>
+                        <div className={styles["form-user-password"]}>
                             <div className={styles["form__group"]}><p className={styles.form__label}>Likes: {user.tripsLiked ? user.tripsLiked.length : ''}</p></div>
                             <div className={styles["form__group"]}><p className={styles.form__label}>Conquered peaks: {user.tripsCompleted ? user.tripsCompleted.length : ''}</p></div>
                             <div className={styles["form__group"]}><p className={styles.form__label}>New password</p></div>
                             <Button title="#PLACEHOLDER" stylePref="orange" toSubmit={true} />
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

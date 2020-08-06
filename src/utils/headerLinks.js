@@ -1,13 +1,6 @@
-const getHeaderLinks = (userid) => {
-    const headerLinks = [
-        {
-            title: 'Login',
-            href: '/login'
-        },
-        {
-            title: 'Register',
-            href: '/register'
-        },
+const getHeaderLinks = (loggedIn, user) => {
+
+    const userLinks = [
         {
             title: 'Create Article',
             href: '/create-article'
@@ -18,12 +11,23 @@ const getHeaderLinks = (userid) => {
         },
         {
             title: 'Profile',
-            href: `/profile/${userid}`
+            href: `/profile/${user && user._id}`
         },
 
     ];
 
-    return headerLinks;
+    const guestLinks = [
+        {
+            title: 'Login',
+            href: '/login'
+        },
+        {
+            title: 'Register',
+            href: '/register'
+        }
+    ]
+
+    return loggedIn ? userLinks : guestLinks;
 }
 
 export default getHeaderLinks;

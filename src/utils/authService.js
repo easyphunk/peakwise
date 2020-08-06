@@ -15,7 +15,12 @@ const authService = async (url, body, onSuccess, onFailure) => {
         const authResult = await authPromise.json();
 
         if (authResult.username && authToken) {
-            onSuccess();
+            onSuccess({
+                username: authResult.username,
+                id: authResult._id,
+                userAccess: authResult.userAccess,
+                profilePhoto: authResult.profilePhoto
+            });
         } else {
             onFailure();
         }
