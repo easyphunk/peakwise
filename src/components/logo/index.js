@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './index.module.css';
+import { Link } from 'react-router-dom';
 
 const Logo = ({ color, href }) => {
     return (
         <div className={styles.header__logo}>
-            <a href={href ? href : '#'}><img src={`/logo-${color}.png`} alt="Logo" /></a>
+            <Link to={href ? href : '#'}><img src={`/logo-${color}.png`} alt="Logo" /></Link>
         </div>
     )
 }
