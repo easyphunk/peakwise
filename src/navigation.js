@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import HomePage from './pages/home-page';
 import LoginPage from './pages/login-page';
@@ -11,38 +11,42 @@ import ProfilePage from './pages/profile-page';
 import ErrorPage from './pages/error-page';
 import UserContext from './UserContext';
 
-class Navigation extends Component {
-    static contextType = UserContext;
+const Navigation = () => {
+    const context = useContext(UserContext);
+    const loggedIn = context.loggedIn;
+    const admin = context.admin;
 
-    render() {
-        const {
-            loggedIn,
-            admin
-        } = this.context;
-        
-        return (
-            
-            <BrowserRouter>
-                <Switch>
-                    <Route path="/" exact >
-                        {loggedIn ? <Redirect to='/explore' /> : <HomePage />}
-                    </Route>
-                    <Route path="/login" exact>
-                        {loggedIn ? <Redirect to='/explore' /> : <LoginPage />}
-                    </Route>
-                    <Route path="/register">
-                        {loggedIn ? <Redirect to='/explore' /> : <RegisterPage />}
-                    </Route>
-                    <Route path="/create-article" component={admin ? CreateTripPage : ErrorPage} />
-                    <Route path="/explore" exact component={loggedIn ? ExplorePage : LoginPage} />
-                    <Route path="/profile/:userid" component={loggedIn ? ProfilePage : LoginPage} />
-                    <Route path="/explore/:tripid" component={loggedIn ? TripDetailsPage : LoginPage} />
-                    <Route path="/edit/:tripid" component={admin ? TripEditPage : ErrorPage} />
-                    <Route component={ErrorPage} />
-                </Switch>
-            </BrowserRouter>
-        )
-    }
+    return (
+        <BrowserRouter>
+            <Switch>
+                <Route path="/" exact >
+                    {loggedIn ? (<Redirect to='/explore' />) : (<HomePage />)}
+                </Route>
+                <Route path="/login">
+                    {loggedIn ? (<Redirect to='/explore' />) : (<LoginPage />)}
+                </Route>
+                <Route path="/register">
+                    {loggedIn ? (<Redirect to='/explore' />) : (<RegisterPage />)}
+                </Route>
+                <Route path="/create-article">
+                    {admin ? (<CreateTripPage />) : (<Redirect to='/error' />)}
+                </Route>
+                <Route path="/explore" exact>
+                    {loggedIn ? (<ExplorePage />) : (<Redirect to='/login' />)}
+                </Route>
+                <Route path="/profile/:userid">
+                    {loggedIn ? (<ProfilePage />) : (<LoginPage />)}
+                </Route>
+                <Route path="/explore/:tripid">
+                    {loggedIn ? (<TripDetailsPage />) : (<LoginPage />)}
+                </Route>
+                <Route path="/edit/:tripid">
+                    {admin ? (<TripEditPage />) : (<Redirect to='/error' />)}
+                </Route>
+                <Route component={ErrorPage} />
+            </Switch>
+        </BrowserRouter>
+    )
 }
 
 export default Navigation;
