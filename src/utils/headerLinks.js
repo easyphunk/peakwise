@@ -12,7 +12,7 @@ const getHeaderLinks = (loggedIn, user) => {
         {
             title: 'Profile',
             href: `/profile/${user && user._id}`
-        },
+        }
 
     ];
 
