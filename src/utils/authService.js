@@ -17,7 +17,7 @@ const authService = async (url, body, onSuccess, onFailure) => {
         if (authResult.username && authToken) {
             onSuccess({
                 username: authResult.username,
-                id: authResult._id,
+                _id: authResult._id,
                 userAccess: authResult.userAccess,
                 profilePhoto: authResult.profilePhoto
             });

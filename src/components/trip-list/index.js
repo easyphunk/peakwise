@@ -1,33 +1,13 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styles from './index.module.css';
 import TripCard from '../../components/trip-card';
 
-class TripList extends Component {
-    constructor(props) {
-        super(props);
+const TripList = () => {
+    const [trips, setTrips] = useState(null);
+    const history = useHistory();
 
-        this.state = {
-            trips: []
-        }
-    }
-
-    getTrips = async () => {
-        const tripsPromise = await fetch('http://localhost:9999/api/v1/trips');
-
-        if(!tripsPromise.ok) {
-            this.props.history.push('/error');
-        }
-
-        const trips = await tripsPromise.json();
-
-        this.setState({
-            trips: trips
-        });
-    }
-
-    renderTrips() {
-        const { trips } = this.state;
-
+    const renderTrips = () => {
         return trips.map(el => {
             return (
                 <TripCard key={el._id} {...el} />
@@ -35,17 +15,34 @@ class TripList extends Component {
         });
     }
 
-    componentDidMount() {
-        this.getTrips();
+    const getTrips = async () => {
+        const tripsPromise = await fetch('http://localhost:9999/api/v1/trips');
+
+        if (!tripsPromise.ok) {
+            history.push('/error');
+        } else {
+            const trips = await tripsPromise.json();
+            setTrips(trips);
+        }
     }
 
-    render() {
+    useEffect(() => {
+        getTrips();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    if (!trips) {
         return (
-            <section className={styles["card-container"]}>
-                {this.renderTrips()}
-            </section>
-        );
+            // TODO
+            <div>Loading...</div>
+        )
     }
+
+    return (
+        <section className={styles["card-container"]}>
+            {renderTrips()}
+        </section>
+    );
 }
 
 export default TripList;

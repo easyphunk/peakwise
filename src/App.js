@@ -11,9 +11,9 @@ class App extends Component {
         super(props);
 
         this.state = {
-            loggedIn: null,
+            loggedIn: false,
             user: null,
-            admin: null
+            admin: false
         }
     }
 
@@ -30,7 +30,7 @@ class App extends Component {
         this.setState({
             loggedIn: false,
             user: null,
-            admin: null
+            admin: false
         })
     }
 
@@ -69,12 +69,6 @@ class App extends Component {
             user,
             admin
         } = this.state;
-
-        if (loggedIn === null) {
-            return (
-                <div>Loading...</div>
-            )
-        }
 
         return (
             <UserContext.Provider value={{

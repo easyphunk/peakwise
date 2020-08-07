@@ -7,8 +7,8 @@ import UserContext from '../../UserContext';
 
 const Header = () => {
     const {
-        loggedIn,
-        user
+        user,
+        loggedIn
     } = useContext(UserContext);
 
     const linkList = getHeaderLinks(loggedIn, user);
@@ -22,7 +22,7 @@ const Header = () => {
                         if (link.title === "Profile") {
                             return (
                                 <LinkComponent key={link.title} title={link.title} href={link.href} >
-                                    <img className={styles["nav__user-img"]} src={loggedIn ? `${user.profilePhoto}` : "https://res.cloudinary.com/dghpuejpt/image/upload/v1596715544/img/profile-photo-default2_gilumy.png"} alt="profile" />
+                                    <img className={styles["nav__user-img"]} src={loggedIn ? `${user.profilePhoto}` : "https://res.cloudinary.com/dghpuejpt/image/upload/v1596012698/user/profile-photo-default_tyrflc.png"} alt="profile" />
                                 </LinkComponent>
                             )
                         } else {
@@ -40,3 +40,4 @@ const Header = () => {
 }
 
 export default Header;
+
