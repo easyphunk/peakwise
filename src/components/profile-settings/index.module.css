@@ -1,0 +1,68 @@
+.heading-secondary {
+    font-size: 2.25rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #E67E22;
+    letter-spacing: 0.1rem;
+    line-height: 1;
+    display: inline-block;
+}
+
+.user-view__content {
+    flex: 1;
+    padding: 7rem 0;
+}
+
+.user-view__form-container {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 0 8rem;
+}
+
+.form__group:not(:last-child) {
+    margin-bottom: 2.5rem;
+}
+
+.form__photo-upload {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+}
+
+.form__user-photo {
+    height: 7.5rem;
+    width: 7.5rem;
+    border-radius: 50%;
+    margin-right: 2rem;
+}
+
+.form__upload {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.form__upload:focus+label {
+    outline: 3px solid #E67E22;
+    outline-offset: 3px;
+}
+
+.form__upload+label {
+    color: #E67E22;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid #E67E22;
+    padding: 3px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.form__upload+label:hover {
+    background-color: #E67E22;
+    color: #fff;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}

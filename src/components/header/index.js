@@ -21,9 +21,7 @@ const Header = () => {
                     linkList.map(link => {
                         if (link.title === "Profile") {
                             return (
-                                <LinkComponent key={link.title} title={link.title} href={link.href} >
-                                    <img className={styles["nav__user-img"]} src={loggedIn ? `${user.profilePhoto}` : "https://res.cloudinary.com/dghpuejpt/image/upload/v1596012698/user/profile-photo-default_tyrflc.png"} alt="profile" />
-                                </LinkComponent>
+                                <LinkComponent key={link.title} title={link.title} href={link.href} />
                             )
                         } else {
                             return (
