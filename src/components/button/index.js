@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.module.css';
 
-const Button = ({ title, href, stylePref, toSubmit }) => {
+const Button = ({ title, href, stylePref, toSubmit, onClick, disabled }) => {
     let styleChoice = '';
     switch (stylePref) {
         case 'orange':
@@ -18,7 +18,7 @@ const Button = ({ title, href, stylePref, toSubmit }) => {
     }
 
     return (
-        toSubmit === undefined ? <a className={styles[styleChoice]} href={href}>{title}</a> : <button type="submit" className={styles[styleChoice]}>{title}</button>
+        toSubmit === undefined ? <a className={styles[styleChoice]} href={href}>{title}</a> : <button type="submit" className={styles[disabled ? "btn-disabled" : styleChoice]} onClick={onClick} disabled={disabled}>{title}</button>
     )
 }
 

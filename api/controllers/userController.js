@@ -1,6 +1,8 @@
 const User = require('./../models/User');
 const AppError = require('../utils/AppError');
 const jwt = require('../utils/jwt');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 exports.getAllUsers = async (req, res, next) => {
     try {
@@ -58,7 +60,7 @@ exports.login = async (req, res, next) => {
 
 exports.verifyLogin = async (req, res, next) => {
     const token = req.body.token || '';
-    
+
     jwt.verifyToken(token)
         .then(data => {
             User.findById(data.id)
@@ -70,7 +72,7 @@ exports.verifyLogin = async (req, res, next) => {
                 });
         })
         .catch(err => {
-            if(['jwt must be provided'].includes(err.message)) {
+            if (['jwt must be provided'].includes(err.message)) {
                 res.status(401).send('Unauthorized!');
                 return;
             }
@@ -83,15 +85,35 @@ exports.verifyLogin = async (req, res, next) => {
 
 exports.updateUser = async (req, res, next) => {
     try {
-        const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-            new: true,
-            runValidators: true
-        });
-        if (!user) {
-            throw new AppError('No user found with this ID', 404);
-        }
+        if (req.body.password) {
+            bcrypt.genSalt(saltRounds, (err, salt) => {
+                bcrypt.hash(req.body.password, salt, async (err, hash) => {
+                    if (err) { next(err); return }
+                    req.body.password = hash;
+                    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+                        new: true,
+                        runValidators: true
+                    });
+                    if (!user) {
+                        throw new AppError('No user found with this ID', 404);
+                    }
+                    
+                    res.status(200).send(user);
+                });
+            });
 
-        res.status(200).send(user);
+        } else {
+
+            const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+                new: true,
+                runValidators: true
+            });
+            if (!user) {
+                throw new AppError('No user found with this ID', 404);
+            }
+            
+            res.status(200).send(user);
+        }
     } catch (err) {
         next(err);
     }
