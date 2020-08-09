@@ -51,11 +51,9 @@ class App extends Component {
                 'Content-type': 'application/json'
             }
         }).then(promise => {
-            console.log(promise);
             return promise.json();
         }).then(response => {
             if (response.status) {
-                console.log(response);
                 this.logIn(response.user);
             } else {
                 this.logOut();
