@@ -86,22 +86,32 @@ exports.verifyLogin = async (req, res, next) => {
 exports.updateUser = async (req, res, next) => {
     try {
         if (req.body.password) {
-            bcrypt.genSalt(saltRounds, (err, salt) => {
-                bcrypt.hash(req.body.password, salt, async (err, hash) => {
-                    if (err) { next(err); return }
-                    req.body.password = hash;
-                    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-                        new: true,
-                        runValidators: true
-                    });
-                    if (!user) {
-                        throw new AppError('No user found with this ID', 404);
-                    }
-                    
-                    res.status(200).send(user);
+            const user = await User.findById(req.params.id);
+            const match = await user.matchPassword(req.body.currPassword);
+            if (!match) {
+                res.status(401).send({
+                    status: 'fail',
+                    message: 'Current password incorrect'
                 });
-            });
-
+            } else {
+                bcrypt.genSalt(saltRounds, (err, salt) => {
+                    bcrypt.hash(req.body.password, salt, async (err, hash) => {
+                        if (err) { next(err); return }
+                        req.body.password = hash;
+                        const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+                            new: true,
+                            runValidators: true
+                        });
+                        if (!user) {
+                            throw new AppError('No user found with this ID', 404);
+                        }
+                        res.status(200).send({
+                            status: 'success',
+                            message: 'Password successfully changed'
+                        });
+                    });
+                });
+            }
         } else {
 
             const user = await User.findByIdAndUpdate(req.params.id, req.body, {

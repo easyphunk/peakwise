@@ -86,7 +86,7 @@ class EditTripPage extends Component {
                                             require={field.required}
                                             onChange={(e) => onChange(e, this)}
                                             key={field.name}
-                                            keyPressHandler={field.type === 'Number' ? (e) => this.avoidEinNumberInput(e) : () => { }}
+                                            onKeyDown={field.type === 'Number' ? (e) => this.avoidEinNumberInput(e) : () => { }}
                                         />
                                     )
                                 })

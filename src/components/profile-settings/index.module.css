@@ -66,3 +66,41 @@
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
 }
+
+.error__msg {
+    display: inline-block;
+    background-color: #ffd2d2;
+    color: #f20202;
+    font-size: 140%;
+    position: relative;
+}
+
+.success__msg {
+    display: inline-block;
+    color: #0f0;
+    font-size: 140%;
+}
+
+.fail__msg {
+    color: #f20202;
+    background-color: #fec1c1;
+    display: inline-block;
+    font-size: 140%;
+}
+
+.user__info {
+    display: block;
+    font-family: inherit;
+    font-size: 1.5rem;
+    color: inherit;
+    padding: 1.25rem 1.75rem;
+    border: none;
+    width: 100%;
+    background-color: #f2f2f2;
+    border-bottom: 3px solid transparent;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    border-radius: 4px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}

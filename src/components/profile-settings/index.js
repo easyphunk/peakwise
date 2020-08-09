@@ -13,10 +13,14 @@ class Profile extends Component {
             user: {},
             profilePhoto: '',
             photoChanged: false,
+            photoChangeFail: '',
             currPassword: '',
-            passChanged: false,
             newPassword: '',
-            newRePassword: ''
+            newRePassword: '',
+            errCurrPass: '',
+            errRepeatPass: '',
+            successMsg: '',
+            failMsg: ''
         }
     }
 
@@ -56,34 +60,79 @@ class Profile extends Component {
 
     savePhoto = async (e) => {
         e.preventDefault();
-        await fetch(`http://localhost:9999/api/v1/users/${this.props.match.params.userid}`, {
-            method: `PATCH`,
-            body: JSON.stringify({
-                profilePhoto: this.state.profilePhoto
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+        try {
+            await fetch(`http://localhost:9999/api/v1/users/${this.props.match.params.userid}`, {
+                method: `PATCH`,
+                body: JSON.stringify({
+                    profilePhoto: this.state.profilePhoto
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            this.setState({
+                photoChanged: false
+            })
+        } catch (err) {
+
+        }
+    }
+
+    newPassEntry = () => {
         this.setState({
-            photoChanged: false
+            errCurrPass: '',
+            errRepeatPass: ''
         })
     }
 
     changePassword = async (e) => {
         e.preventDefault();
-        await fetch(`http://localhost:9999/api/v1/users/${this.props.match.params.userid}`, {
-            method: `PATCH`,
-            body: JSON.stringify({
-                profilePhoto: this.state.profilePhoto
-            }),
-            headers: {
-                'Content-Type': 'application/json'
+        if (this.state.currPassword === '') {
+            this.setState({
+                errCurrPass: 'Please enter your current password.',
+                successMsg: '',
+                failMsg: ''
+            })
+        } else {
+            if (this.state.newPassword !== this.state.newRePassword) {
+                this.setState({
+                    errRepeatPass: 'Your new password & confirmation password do not match.',
+                    successMsg: '',
+                    failMsg: ''
+                })
+            } else {
+                try {
+                    const promise = await fetch(`http://localhost:9999/api/v1/users/${this.props.match.params.userid}`, {
+                        method: `PATCH`,
+                        body: JSON.stringify({
+                            currPassword: this.state.currPassword,
+                            password: this.state.newRePassword
+                        }),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    const result = await promise.json();
+                    if (result.status === 'success') {
+
+                        this.setState({
+                            successMsg: 'Password successfully changed.',
+                            failMsg: '',
+                            currPassword: '',
+                            newPassword: '',
+                            newRePassword: ''
+                        })
+                    } else {
+                        throw new Error('Fail');
+                    }
+                } catch (err) {
+                    this.setState({
+                        failMsg: 'Password change failed.',
+                        successMsg: ''
+                    })
+                }
             }
-        });
-        this.setState({
-            photoChanged: false
-        })
+        }
     }
 
     render() {
@@ -95,10 +144,10 @@ class Profile extends Component {
                     <h2 className={styles["heading-secondary"]}>Your account settings</h2>
                     <div className={styles["form-user-data"]}>
                         <div className={styles.form__group}>
-                            <Input name="username" label="Username" value={user.username} />
+                            <div className={styles.user__info}>{user.username}</div>
                         </div>
                         <div className={styles.form__group}>
-                            <Input name="email" label="Email" value={user.email} />
+                            <div className={styles.user__info}>{user.email}</div>
                         </div>
                         <div>&nbsp;</div>
                         <div className={styles.form__group + ' ' + styles["form__photo-upload"]}>
@@ -115,16 +164,21 @@ class Profile extends Component {
                     <h2 className={styles["heading-secondary"]}>Password change</h2>
                     <form className={styles["form-user-password"]}>
                         <div className={styles.form__group}>
-                            <Input name="currPassword" value={currPassword} type="password" label="Current password" placeholder="••••••••" required={true} onChange={(e) => onChange(e, this)} />
+                            <Input name="currPassword" value={currPassword} type="password" label="Current password" placeholder="••••••••" required={true} onChange={(e) => onChange(e, this)} onKeyDown={() => this.newPassEntry()} />
                         </div>
                         <div className={styles.form__group}>
                             <Input name="newPassword" value={newPassword} type="password" label="New password" placeholder="••••••••" required={true} onChange={(e) => onChange(e, this)} />
                         </div>
                         <div className={styles.form__group}>
-                            <Input name="newRePassword" value={newRePassword} type="password" label="Repeat new password" placeholder="••••••••" required={true} onChange={(e) => onChange(e, this)} />
+                            <Input name="newRePassword" value={newRePassword} type="password" label="Confirm new password" placeholder="••••••••" required={true} onChange={(e) => onChange(e, this)} onKeyDown={() => this.newPassEntry()} />
                         </div>
                         <div className={styles.form__group}>
-                            <Button title="Save Password" stylePref="orange" toSubmit={true} disabled={!this.state.passChanged} />
+                            <div className={styles.error__msg}>{this.state.errCurrPass !== '' ? this.state.errCurrPass : ''}</div>
+                            <div className={styles.error__msg}>{this.state.errRepeatPass !== '' ? this.state.errRepeatPass : ''}</div>
+                            <div className={styles.success__msg}>{this.state.successMsg !== '' ? this.state.successMsg : ''}</div>
+                            <div className={styles.fail__msg}>{this.state.failMsg !== '' ? this.state.failMsg : ''}</div>
+                            <div></div>
+                            <Button title="Save Password" stylePref="orange" toSubmit={true} onClick={(e) => this.changePassword(e)} disabled={(this.state.newPassword === '' || this.state.newRePassword === '')} />
                         </div>
                     </form>
                 </div>
