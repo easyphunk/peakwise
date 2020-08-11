@@ -38,7 +38,7 @@ const ButtonImageUpload = ({title, targetImg, that}) => {
 
     return (
         <div className={styles.photo__upload}>
-            <img src={that.state[`${targetImg}`]} alt="thumbnail" />
+            <img src={that.state[`${targetImg}`] || "/placeholder-img.jpg"} alt="thumbnail" />
             <button className={styles.upload__btn} onClick={(e) => openWidget(e, targetImg)}>{title}</button>
         </div>
     )
