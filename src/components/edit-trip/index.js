@@ -108,7 +108,7 @@ class EditTripPage extends Component {
                                                 <div key={field.name} className={styles.section__map}>
                                                     <img src='/pointer.png' alt="pointer"></img>
                                                     {
-                                                        this.state.loadMap ? <TripMap lat={this.state.latitude} lng={this.state.longitude} zoom={11} /> : ''
+                                                        this.state.loadMap ? <TripMap lat={this.state.latitude} lng={this.state.longitude} zoom={11} pin={true} /> : ''
                                                     }
                                                     <Input
                                                         name={field.name}

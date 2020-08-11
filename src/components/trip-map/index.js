@@ -11,7 +11,8 @@ class TripMap extends React.Component {
         this.state = {
             lat: this.props.lat,
             lng: this.props.lng,
-            zoom: this.props.zoom
+            zoom: this.props.zoom,
+            pin: this.props.pin
         };
     }
 
@@ -36,18 +37,20 @@ class TripMap extends React.Component {
             });
         });
         
-        map.on('load', function () {
-            new mapboxgl.Marker()
+        if (this.state.pin) {
+            map.on('load', function () {
+                new mapboxgl.Marker()
                 .setLngLat([pin.lng, pin.lat])
                 .addTo(map);
-        });
+            });
+        }
     }
 
     render() {
         return (
             <div>
                 <div className={styles.sidebarStyle}>
-                    <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div>
+                    <div>Latitude: {this.state.lat} | Longitude: {this.state.lng} | Zoom: {this.state.zoom}</div>
                 </div>
                 <div ref={el => this.mapContainer = el} className={styles.mapContainer} />
             </div>
