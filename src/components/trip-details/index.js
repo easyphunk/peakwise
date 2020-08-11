@@ -2,38 +2,92 @@ import React, { Component } from 'react';
 import styles from './index.module.css';
 import Button from '../../components/button';
 import { withRouter } from 'react-router-dom';
+import TripDetailsUser from '../trip-details-user';
+import UserContext from '../../UserContext';
+import TripMap from '../trip-map';
 
 class TripDetails extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            trip: {}
+            trip: {},
+            conquered: false,
+            liked: false
         }
     }
+
+    static contextType = UserContext;
 
     getTrip = async (id) => {
         const tripPromise = await fetch(`http://localhost:9999/api/v1/trips/${id}`);
 
-        if(!tripPromise.ok) {
+        if (!tripPromise.ok) {
             this.props.history.push('/error');
         }
-        
+
         const trip = await tripPromise.json();
 
         this.setState({
             trip
         });
+
+        if (this.context.user.tripsCompleted) {
+            if (this.context.user.tripsCompleted.includes(id)) {
+                this.setState({
+                    conquered: true
+                });
+            }
+            if (this.context.user.tripsLiked.includes(id)) {
+                this.setState({
+                    liked: true
+                });
+            }
+        }
+
     }
 
     componentDidMount() {
-        this.getTrip(this.props.match.params.tripid);
         window.scrollTo(0, 0);
+        this.getTrip(this.props.match.params.tripid);
+    }
+
+    componentDidUpdate = async () => {
+        fetch(`http://localhost:9999/api/v1/users/${this.context.user._id}`)
+            .then(res => res.json())
+            .then(json => this.context.user = json);
+    }
+
+    tripManager = async (e, action) => {
+        e.preventDefault();
+
+        const result = await fetch(`http://localhost:9999/api/v1/trips/${this.props.match.params.tripid}?${action}=${this.context.user._id}`, {
+            method: 'PATCH'
+        });
+
+        if (result.ok) {
+            if (action === 'like' || action === 'unlike') {
+                this.setState({
+                    liked: !this.state.liked
+                });
+            } else if (action === 'conquer' || action === 'unconquer') {
+                this.setState({
+                    conquered: !this.state.conquered
+                });
+            }
+        }
     }
 
     render() {
         const { trip } = this.state;
-        
+
+        if (Object.keys(trip).length === 0 && trip.constructor === Object) {
+            return (
+                <div>Loading...</div>
+            );
+        }
+
+
         return (
             <section className={styles.wrapper}>
                 <section className={styles["section-header"]}>
@@ -54,23 +108,21 @@ class TripDetails extends Component {
                         <div>
                             <div className={styles["overview-box__group"]}>
                                 <h2 className={styles["heading-secondary"] + ' ' + styles["ma-bt-lg"]}>Quick facts</h2>
-                                <div className={styles["overview-box__detail"]}><span className={styles["overview-box__label"]}>Elevation</span><span
-                                    className={styles["overview-box__text"]}>{trip.elevation} m</span></div>
-                                <div className={styles["overview-box__detail"]}><span className={styles["overview-box__label"]}>Elevation</span><span
-                                    className={styles["overview-box__text"]}>{trip.elevationInFt} ft</span></div>
-                                <div className={styles["overview-box__detail"]}><span className={styles["overview-box__label"]}>Latitude</span><span
-                                    className={styles["overview-box__text"]}>{trip.latitude} &deg;</span></div>
-                                <div className={styles["overview-box__detail"]}><span className={styles["overview-box__label"]}>Longitude</span><span
-                                    className={styles["overview-box__text"]}>{trip.longitude} &deg;</span></div>
+                                <div className={styles["overview-box__detail"]}><span className={styles["overview-box__label"]}><ion-icon className={styles.ion__icon} name="golf-outline"></ion-icon> Elevation:</span><span
+                                    className={styles["overview-box__text"]}>{trip.elevation} m / {trip.elevationInFt} ft</span></div>
+                                <div className={styles["overview-box__detail"]}><span className={styles["overview-box__label"]}><ion-icon className={styles.ion__icon} name="earth-outline"></ion-icon> Location:</span><span
+                                    className={styles["overview-box__text"]}>{trip.location}</span></div>
+                                <div className={styles["overview-box__detail"]}><span className={styles["overview-box__label"]}><ion-icon className={styles.ion__icon} name="compass-outline"></ion-icon> Latitude/Longitude:</span><span
+                                    className={styles["overview-box__text"]}>{trip.latitude} &deg; / {trip.longitude} &deg;</span></div>
                             </div>
                             <div className={styles["overview-box__group"]}>
-                                <h2 className={styles["heading-secondary"] + ' ' + styles["ma-bt-lg"]}>#PLACEHOLDER</h2>
-                                <div className={styles["overview-box__detail"]}><img className={styles["overview-box__img"]}
-                                    src="/placeholder-img.jpg" alt="#placeholder" /><span
-                                        className={styles["overview-box__label"]}>#PLACEHOLDER</span><span className={styles["overview-box__text"]}>#PLACEHOLDER</span></div>
-                                <div className={styles["overview-box__detail"]}><img className={styles["overview-box__img"]}
-                                    src="/placeholder-img.jpg" alt="#placeholder" /><span
-                                        className={styles["overview-box__label"]}>#PLACEHOLDER</span><span className={styles["overview-box__text"]}>#PLACEHOLDER</span></div>
+                                <h2 className={styles["heading-secondary"] + ' ' + styles["ma-bt-lg"]}>When to climb</h2>
+                                <p className={styles.wtc__text}>{trip.whenToClimb}</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                {this.state.liked ? <Button title="Unlike" stylePref="regular-disabled" onClick={(e) => this.tripManager(e, 'unlike')} /> : <Button title="Like" stylePref="regular" onClick={(e) => this.tripManager(e, 'like')} />}<span>&nbsp;</span>
+                                {this.state.conquered ? <Button title="Conquered!" stylePref="regular-disabled" onClick={(e) => this.tripManager(e, 'unconquer')} /> : <Button title="Conquered?" stylePref="regular" onClick={(e) => this.tripManager(e, 'conquer')} />}
+                                {/* {this.context.admin ? <Button title="Edit" href={`/edit/${this.props.match.params.tripid}`} stylePref="regular" /> : ''} */}
                             </div>
                         </div>
                     </div>
@@ -83,11 +135,6 @@ class TripDetails extends Component {
                     <p className={styles["heading-secondary"]}>Overview</p>
                     <p className={styles.info__text}>{trip.overview}</p>
                 </section>
-                <section className={styles["section-info"]}>
-                    <p className={styles["heading-secondary"]}>Getting there</p>
-                    <p className={styles.info__text}>{trip.gettingThere}</p>
-                </section>
-
                 <section className={styles["section-pictures"]}>
                     <div className={styles["picture-box"]}><img className={styles["picture-box__img"] + ' ' + styles["picture-box__img"]}
                         src={trip.image1 ? trip.image1 : null} alt={trip.name + ' 1'} /></div>
@@ -96,82 +143,32 @@ class TripDetails extends Component {
                     <div className={styles["picture-box"]}><img className={styles["picture-box__img"] + ' ' + styles["picture-box__img"]}
                         src={trip.image3 ? trip.image3 : null} alt={trip.name + ' 3'} /></div>
                 </section>
-
-                <section className={styles["section-wtc"]}>
-                    <div className={styles.wtc}>
-                        <div className={styles.wtc__img + ' ' + styles["wtc__img--logo"]}><img src="/logo-black.png"
-                            alt="peakwise" /></div><img className={styles.wtc__img + ' ' + styles["wtc__img--1"]}
-                                src={trip.images ? trip.images[1] : null} alt="trip" /><img
-                                className={styles.wtc__img + ' ' + styles["wtc__img--2"]} src={trip.images ? trip.images[2] : null}
-                            alt="trip" />
-                        <div className={styles.wtc__content}>
-                            <h2 className={styles["heading-secondary"]}>When to climb</h2>
-                            <p className={styles.wtc__text}>{trip.whenToClimb}</p>
-                            <Button title="Like" href="#" stylePref="regular" />
-                            <Button title="Conquered !" href="#" stylePref="regular" />
-                            <Button title="Edit" href={`/edit/${this.props.match.params.tripid}`} stylePref="regular" />
-                        </div>
-                    </div>
+                <section className={styles["section-info"]}>
+                    <p className={styles["heading-secondary"]}>Getting there</p>
+                    <p className={styles.info__text}>{trip.gettingThere}</p>
                 </section>
-                <section className={styles["section-reviews"]}>
-                    <div className={styles.reviews}>
-                        <div className={styles.reviews__card}>
-                            <div className={styles.reviews__avatar}><img className={styles["reviews__avatar-img"]}
-                                src="/placeholder-img.jpg" alt="#placeholder" />
-                                <h6 className={styles.reviews__user}>#PLACEHOLDER</h6>
-                            </div>
-                            <p className={styles.reviews__text}>Cras mollis nisi parturient mi nec aliquet suspendisse sagittis eros
-                        condimentum scelerisque taciti mattis praesent feugiat eu nascetur a tincidunt</p>
-                            <div className={styles.reviews__rating}></div>
-                        </div>
-                        <div className={styles.reviews__card}>
-                            <div className={styles.reviews__avatar}><img className={styles["reviews__avatar-img"]}
-                                src="/placeholder-img.jpg" alt="#placeholder" />
-                                <h6 className={styles.reviews__user}>#PLACEHOLDER</h6>
-                            </div>
-                            <p className={styles.reviews__text}>Pulvinar taciti etiam aenean lacinia natoque interdum fringilla suspendisse
-                            nam
-                        sapien urna!</p>
-                            <div className={styles.reviews__rating}></div>
-                        </div>
-                        <div className={styles.reviews__card}>
-                            <div className={styles.reviews__avatar}><img className={styles["reviews__avatar-img"]}
-                                src="/placeholder-img.jpg" alt="#placeholder" />
-                                <h6 className={styles.reviews__user}>#PLACEHOLDER</h6>
-                            </div>
-                            <p className={styles.reviews__text}>Sem feugiat sed lorem vel dignissim platea habitasse dolor suscipit
-                            ultricies
-                        dapibus</p>
-                            <div className={styles.reviews__rating}></div>
-                        </div>
-                        <div className={styles.reviews__card}>
-                            <div className={styles.reviews__avatar}><img className={styles["reviews__avatar-img"]}
-                                src="/placeholder-img.jpg" alt="#placeholder" />
-                                <h6 className={styles.reviews__user}>#PLACEHOLDER</h6>
-                            </div>
-                            <p className={styles.reviews__text}>Blandit varius nascetur est felis praesent lorem himenaeos pretium dapibus
-                        tellus bibendum consequat ac duis</p>
-                            <div className={styles.reviews__rating}></div>
-                        </div>
-                        <div className={styles.reviews__card}>
-                            <div className={styles.reviews__avatar}><img className={styles["reviews__avatar-img"]}
-                                src="/placeholder-img.jpg" alt="#placeholder" />
-                                <h6 className={styles.reviews__user}>#PLACEHOLDER</h6>
-                            </div>
-                            <p className={styles.reviews__text}>Tempor pellentesque eu placerat auctor enim nam suscipit tincidunt natoque
-                        ipsum est.</p>
-                            <div className={styles.reviews__rating}></div>
-                        </div>
-                        <div className={styles.reviews__card}>
-                            <div className={styles.reviews__avatar}><img className={styles["reviews__avatar-img"]}
-                                src="/placeholder-img.jpg" alt="#placeholder" />
-                                <h6 className={styles.reviews__user}>#PLACEHOLDER</h6>
-                            </div>
-                            <p className={styles.reviews__text}>Magna magnis tellus dui vivamus donec placerat vehicula erat turpis</p>
-                            <div className={styles.reviews__rating}></div>
-                        </div>
-                    </div>
+                <section className={styles["section-map"]}>
+                    <TripMap lng={trip.longitude} lat={trip.latitude} zoom={11} />
                 </section>
+                {
+                    trip.completedBy.length === 0 ? '' :
+                        <div>
+                            <section className={styles["section-climbers"]}>
+                                <p className={styles["heading-secondary"]}>Climbed by</p>
+                            </section>
+                            <section className={styles["section-conquerors"]}>
+                                <div className={styles.conquerors}>
+                                    {
+                                        trip.completedBy.map(el => {
+                                            return (
+                                                <TripDetailsUser key={el._id} profilePhoto={el.profilePhoto} username={el.username} />
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </section>
+                        </div>
+                }
             </section>
         );
     }
