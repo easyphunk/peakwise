@@ -120,9 +120,12 @@ class TripDetails extends Component {
                                 <p className={styles.wtc__text}>{trip.whenToClimb}</p>
                                 <p>&nbsp;</p>
                                 <p>&nbsp;</p>
-                                {this.state.liked ? <Button title="Unlike" stylePref="regular-disabled" onClick={(e) => this.tripManager(e, 'unlike')} /> : <Button title="Like" stylePref="regular" onClick={(e) => this.tripManager(e, 'like')} />}<span>&nbsp;</span>
+                                {this.state.liked ? <Button title="Unlike" stylePref="regular-disabled" onClick={(e) => this.tripManager(e, 'unlike')} /> : <Button title="Like" stylePref="regular" onClick={(e) => this.tripManager(e, 'like')} />}
                                 {this.state.conquered ? <Button title="Conquered!" stylePref="regular-disabled" onClick={(e) => this.tripManager(e, 'unconquer')} /> : <Button title="Conquered?" stylePref="regular" onClick={(e) => this.tripManager(e, 'conquer')} />}
-                                {/* {this.context.admin ? <Button title="Edit" href={`/edit/${this.props.match.params.tripid}`} stylePref="regular" /> : ''} */}
+                                <div className={styles.admin__btns}>
+                                {this.context.admin ? <Button title="Edit" href={`/edit/${this.props.match.params.tripid}`} stylePref="admin" /> : ''}
+                                {this.context.admin ? <Button title="Delete" href={`#}`} stylePref="admin" /> : ''}
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -343,3 +343,7 @@
     font-weight: 400;
     text-align: justify;
 }
+
+.admin__btns {
+    margin-top: 4%;
+}

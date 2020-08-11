@@ -1,0 +1,30 @@
+.photo__upload {
+    position: relative;
+    width: 20%;
+    display: inline-block;
+    margin-right: 2%;
+}
+
+.photo__upload img {
+    height: 100%;
+    width: 100%;
+}
+
+.photo__upload .upload__btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #596770f6;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.photo__upload .upload__btn:hover {
+    background-color: #E67E22;
+}
