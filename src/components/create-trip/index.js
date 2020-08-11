@@ -47,7 +47,7 @@ class CreateTrip extends Component {
     }
 
     render() {
-        const tripFields = getInputFields(this.props).trip;
+        const tripFields = getInputFields().trip;
 
         return (
             <div className={styles["user-view"]}>

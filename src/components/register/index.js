@@ -47,7 +47,7 @@ class RegisterPage extends Component {
 
     render() {
 
-        const credentialsFields = getInputFields(this.props).register;
+        const credentialsFields = getInputFields().register;
 
         return (
             <div className={styles["register-form"]}>

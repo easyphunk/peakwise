@@ -89,38 +89,10 @@ const getInputFields = () => {
                 required: true
             },
             {
-                name: 'coverImage',
-                type: 'text',
-                label: 'Cover Image',
-                placeholder: 'e.g. http://img.com/img1.jpg',
-                required: true
-            },
-            {
-                name: 'image1',
-                type: 'text',
-                label: 'Thumbnail image 1',
-                placeholder: 'e.g. http://img.com/img1.jpg',
-                required: true
-            },
-            {
-                name: 'image2',
-                type: 'text',
-                label: 'Thumbnail image 2',
-                placeholder: 'e.g. http://img.com/img1.jpg',
-                required: true
-            },
-            {
-                name: 'image3',
-                type: 'text',
-                label: 'Thumbnail image 3',
-                placeholder: 'e.g. http://img.com/img1.jpg',
-                required: true
-            },
-            {
-                name: 'overview',
+                name: 'whenToClimb',
                 type: 'textarea',
-                label: 'Overview',
-                placeholder: 'e.g. Mount Everest gets its European name from British Superintentant General of the Survey of India 1830-1843, Sir George Everest...',
+                label: 'When To Climb',
+                placeholder: 'e.g. From April to May, even mid-June, is arguably the ideal time to Mount Everest; not only is the peak often visible and clear...',
                 required: true
             },
             {
@@ -131,10 +103,10 @@ const getInputFields = () => {
                 required: true
             },
             {
-                name: 'whenToClimb',
+                name: 'overview',
                 type: 'textarea',
-                label: 'When To Climb',
-                placeholder: 'e.g. From April to May, even mid-June, is arguably the ideal time to Mount Everest; not only is the peak often visible and clear...',
+                label: 'Overview',
+                placeholder: 'e.g. Mount Everest gets its European name from British Superintentant General of the Survey of India 1830-1843, Sir George Everest...',
                 required: true
             },
             {

@@ -42,6 +42,10 @@
     box-sizing: border-box;
 }
 
+.text__input:last-of-type {
+    margin-bottom: 2rem;
+}
+
 .form__input:focus, .text__input:focus {
     outline: none;
     border-bottom: 3px solid #0f0;
