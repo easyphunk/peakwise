@@ -15,13 +15,13 @@ const TripCard = (props) => {
         <div className={styles.card__details}>
             <h4 className={styles["card__sub-heading"]}>{props.location}</h4>
             <p className={styles.card__text}>{`${props.overview.slice(0, 100)}...`}</p>
-            <div className={styles.card__data}><span>&#8679; {props.elevation} m</span></div>
-            <div className={styles.card__data}><span>&#9954; N: {props.latitude}</span></div>
-            <div className={styles.card__data}><span>&#8679; {props.elevationInFt} ft</span></div>
-            <div className={styles.card__data}><span>&#9954; E: {props.longitude}</span></div>
+            <div className={styles.card__data}><span><ion-icon className={styles.ion__icon} name="golf-outline"></ion-icon> {props.elevation} m</span></div>
+            <div className={styles.card__data}><span><ion-icon className={styles.ion__icon} name="compass-outline"></ion-icon> Lat: {props.latitude} &deg;</span></div>
+            <div className={styles.card__data}><span><ion-icon className={styles.ion__icon} name="golf-outline"></ion-icon> {props.elevationInFt} ft</span></div>
+            <div className={styles.card__data}><span><ion-icon className={styles.ion__icon} name="compass-outline"></ion-icon> Lon: {props.longitude} &deg;</span></div>
         </div>
         <div className={styles.card__footer}>
-            <p><span className={styles["card__footer-value"]}>{props.views}</span> <span className={styles["card__footer-text"]}>views</span>
+            <p><span className={styles["card__footer-value"]}>{props.completedBy.length}</span> <span className={styles["card__footer-text"]}>{props.completedBy.length > 1 ? 'have conquered this peak' : 'has conquered this peak'}</span>
             </p>
             <p className={styles.card__likes}><span className={styles["card__footer-value"]}>{props.likes}</span> <span
                 className={styles["card__footer-text"]}>likes</span></p>

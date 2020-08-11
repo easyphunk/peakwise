@@ -155,7 +155,7 @@ class Profile extends Component {
                         </div>
                         <div className={styles.form__group}>
                             <Button title="Change photo" toSubmit={true} onClick={() => this.openWidget()} stylePref="orange" />
-                            <Button title="Save" stylePref="orange" toSubmit={true} onClick={(e) => this.savePhoto(e)} disabled={!this.state.photoChanged} />
+                            <Button title="Save" stylePref={!this.state.photoChanged ? "disabled" : "orange"} toSubmit={true} onClick={(e) => this.savePhoto(e)} disabled={!this.state.photoChanged} />
                         </div>
                     </div>
                 </div>
@@ -178,7 +178,7 @@ class Profile extends Component {
                             <div className={styles.success__msg}>{this.state.successMsg !== '' ? this.state.successMsg : ''}</div>
                             <div className={styles.fail__msg}>{this.state.failMsg !== '' ? this.state.failMsg : ''}</div>
                             <div></div>
-                            <Button title="Save Password" stylePref="orange" toSubmit={true} onClick={(e) => this.changePassword(e)} disabled={(this.state.newPassword === '' || this.state.newRePassword === '')} />
+                            <Button title="Save Password" stylePref={!this.state.photoChanged ? "disabled" : "orange"} toSubmit={true} onClick={(e) => this.changePassword(e)} disabled={(this.state.newPassword === '' || this.state.newRePassword === '')} />
                         </div>
                     </form>
                 </div>

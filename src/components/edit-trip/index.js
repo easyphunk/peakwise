@@ -7,6 +7,7 @@ import onChange from '../../utils/inputChangeHandler';
 import { withRouter } from 'react-router-dom';
 import tripService from '../../utils/tripService';
 
+
 class EditTripPage extends Component {
     constructor(props) {
         super(props);
@@ -27,46 +28,46 @@ class EditTripPage extends Component {
             gettingThere: ''
         }
     }
-
+    
     getTrip = async (id) => {
         const tripPromise = await fetch(`http://localhost:9999/api/v1/trips/${id}`);
-
+        
         if (!tripPromise.ok) {
             this.props.history.push('/error');
         }
-
+        
         const trip = await tripPromise.json();
-
+        
         this.setState({
             ...trip
         });
     }
-
+    
     avoidEinNumberInput = (event) => {
         return event.key === 'e' && event.preventDefault()
     }
-
+    
     componentDidMount() {
         this.getTrip(this.props.match.params.tripid);
     }
-
+    
     handleSubmit = async (event) => {
         event.preventDefault();
         const updatedTripObj = this.state;
-
+        
         await tripService(`http://localhost:9999/api/v1/trips/${this.props.match.params.tripid}`, { ...updatedTripObj }, 'PATCH',
-            (tripId) => {
-                this.props.history.push(`/explore/${tripId}`);
-            }, () => {
-                // TODO
-                console.log('ERROR >>>> <<<<');
-            }
+        (tripId) => {
+            this.props.history.push(`/explore/${tripId}`);
+        }, () => {
+            // TODO
+            console.log('ERROR >>>> <<<<');
+        }
         )
     }
-
+    
     render() {
         const tripFields = getInputFields().trip;
-
+        
         return (
             <div className={styles["user-view"]}>
                 <div className={styles["user-view__content"]}>
@@ -77,16 +78,16 @@ class EditTripPage extends Component {
                                 tripFields.map(field => {
                                     return (
                                         <Input
-                                            name={field.name}
-                                            type={field.type}
-                                            label={field.label}
-                                            step={field.step}
-                                            value={this.state[field.name]}
-                                            placeholder={field.placeholder}
-                                            require={field.required}
-                                            onChange={(e) => onChange(e, this)}
-                                            key={field.name}
-                                            onKeyDown={field.type === 'Number' ? (e) => this.avoidEinNumberInput(e) : () => { }}
+                                        name={field.name}
+                                        type={field.type}
+                                        label={field.label}
+                                        step={field.step}
+                                        value={this.state[field.name]}
+                                        placeholder={field.placeholder}
+                                        require={field.required}
+                                        onChange={(e) => onChange(e, this)}
+                                        key={field.name}
+                                        onKeyDown={field.type === 'Number' ? (e) => this.avoidEinNumberInput(e) : () => { }}
                                         />
                                     )
                                 })

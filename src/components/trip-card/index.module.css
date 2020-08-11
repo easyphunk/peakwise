@@ -135,3 +135,9 @@
     justify-self: end;
     align-self: center;
 }
+
+ion-icon {
+    padding-top: 2px;
+    vertical-align: top;
+    font-size: 120%;
+}

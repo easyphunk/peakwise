@@ -1,24 +1,11 @@
 import React from 'react';
 import styles from './index.module.css';
+import { Link } from 'react-router-dom';
 
 const Button = ({ title, href, stylePref, toSubmit, onClick, disabled }) => {
-    let styleChoice = '';
-    switch (stylePref) {
-        case 'orange':
-            styleChoice = 'btn-orange';
-            break;
-        case 'regular':
-            styleChoice = 'btn-regular';
-            break;
-        case 'wide':
-            styleChoice = 'btn';
-            break;
-        default:
-            styleChoice = 'btn';
-    }
 
     return (
-        toSubmit === undefined ? <a className={styles[styleChoice]} href={href}>{title}</a> : <button type="submit" className={styles[disabled ? "btn-disabled" : styleChoice]} onClick={onClick} disabled={disabled}>{title}</button>
+        toSubmit === undefined ? <Link className={styles[`btn-${stylePref}`]} to={href ? href : '#'} onClick={onClick}>{title}</Link> : <button type="submit" className={styles[`btn-${stylePref}`]} onClick={onClick} disabled={disabled}>{title}</button>
     )
 }
 

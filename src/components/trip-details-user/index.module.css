@@ -1,0 +1,37 @@
+.reviews__card {
+    width: 150px;
+    height: 170px;
+    padding: 1% 1%;
+    background-color: #f7f7f7;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    scroll-snap-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.reviews__avatar {
+    display: flex;
+    align-items: center;
+}
+
+.reviews__avatar-img {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+}
+
+.reviews__user {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
