@@ -7,6 +7,7 @@ import onChange from '../../utils/inputChangeHandler';
 import { withRouter } from 'react-router-dom';
 import authService from '../../utils/authService';
 import UserContext from '../../UserContext';
+import { serializeError } from 'serialize-error';
 
 class RegisterPage extends Component {
     constructor(props) {
@@ -16,7 +17,8 @@ class RegisterPage extends Component {
             username: '',
             email: '',
             password: '',
-            rePassword: ''
+            rePassword: '',
+            errorMsg: ''
         }
     }
 
@@ -26,6 +28,18 @@ class RegisterPage extends Component {
         event.preventDefault();
         const { username, email, password, rePassword } = this.state;
 
+        if (username === '' || email === '' || password === '' || rePassword === '') {
+            this.setState({
+                errorMsg: 'Please fill all details.'
+            })
+            return;
+        } else if (password !== rePassword) {
+            this.setState({
+                errorMsg: 'Passwords do not match.'
+            })
+            return;
+        }
+
         await authService('http://localhost:9999/api/v1/users/register',
             {
                 username,
@@ -33,13 +47,24 @@ class RegisterPage extends Component {
                 password,
                 rePassword
             }, (user) => {
-                // TODO
                 this.context.logIn(user);
                 this.props.history.push('/explore');
-            }, () => {
-                // TODO
-                console.log('nah boi')
-                this.props.history.push('/error');
+            }, (err) => {
+                const serializedErr = serializeError(err).message;
+                const errMsg = JSON.parse(serializedErr).message;
+                if (errMsg.includes('User validation failed: email')) {
+                    this.setState({
+                        errorMsg: 'Please write a valid email address.'
+                    })
+                } else if (errMsg.includes('index: username')) {
+                    this.setState({
+                        errorMsg: 'This username is already registered.'
+                    })
+                } else if (errMsg.includes('index: email')) {
+                    this.setState({
+                        errorMsg: 'This email is already registered.'
+                    })
+                }
             }
         );
     }
@@ -69,6 +94,8 @@ class RegisterPage extends Component {
                             )
                         })
                     }
+                    <div className={styles.error__msg}>{this.state.errorMsg !== '' ? this.state.errorMsg : ''}</div>
+                    <p></p>
                     <Button title="Register" href="#" stylePref="regular" toSubmit={true} />
                 </form>
             </div>

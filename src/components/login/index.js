@@ -15,7 +15,7 @@ class LoginPage extends Component {
         this.state = {
             username: '',
             password: '',
-            error: ''
+            errorMsg: ''
         }
     }
 
@@ -30,21 +30,26 @@ class LoginPage extends Component {
                 username,
                 password
             }, (user) => {
-                // TODO
                 this.context.logIn(user);
                 this.props.history.push(`/explore`);
 
             }, () => {
-                // TODO
-                console.log('nah boi')
-                this.props.history.push('/error');
+                this.setState({
+                    errorMsg: 'Invalid login.'
+                })
             }
         );
     }
 
+    newLoginEntry = () => {
+        this.setState({
+            errorMsg: ''
+        })
+    }
+
     render() {
         const credentialsFields = getInputFields().login;
-        
+
         return (
             <div className={styles["login-form"]}>
                 <h2 className={styles["heading-secondary"] + ' ' + styles["ma-bt-lg"]}>Log into your account</h2>
@@ -60,11 +65,14 @@ class LoginPage extends Component {
                                     placeholder={field.placeholder}
                                     require={field.required}
                                     onChange={(e) => onChange(e, this)}
+                                    onFocus={() => this.newLoginEntry()}
                                     key={field.name}
                                 />
                             )
                         })
                     }
+                    <div className={styles.error__msg}>{this.state.errorMsg !== '' ? this.state.errorMsg : ''}</div>
+                    <p></p>
                     <Button title="Login" href="#" stylePref="regular" toSubmit={true} onSumbit={(e) => this.handleSubmit(e)} />
                 </form>
             </div>
