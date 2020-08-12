@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styles from './index.module.css';
 import Logo from '../logo';
 import LinkComponent from '../link';
+import LinkAdmin from '../link-admin';
 import getHeaderLinks from '../../utils/headerLinks';
 import UserContext from '../../UserContext';
 
@@ -19,9 +20,9 @@ const Header = () => {
             <nav className={styles.nav}>
                 {
                     linkList.map(link => {
-                        if (link.title === "Profile") {
+                        if (link.title === "Manage Content") {
                             return (
-                                <LinkComponent key={link.title} title={link.title} href={link.href} />
+                                <LinkAdmin key={link.title} title={link.title} href={link.href} />
                             )
                         } else {
                             return (

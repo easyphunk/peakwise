@@ -2,8 +2,20 @@ const getHeaderLinks = (loggedIn, user) => {
 
     const userLinks = [
         {
-            title: 'Create Article',
-            href: '/create-article'
+            title: 'Explore',
+            href: '/explore'
+        },
+        {
+            title: 'Profile',
+            href: `/profile/${user && user._id}`
+        }
+
+    ];
+
+    const adminLinks = [
+        {
+            title: 'Manage Content',
+            href: '#'
         },
         {
             title: 'Explore',
@@ -27,7 +39,15 @@ const getHeaderLinks = (loggedIn, user) => {
         }
     ]
 
-    return loggedIn ? userLinks : guestLinks;
+    if (loggedIn) {
+        if (user && user.userAccess === 'user') {
+            return userLinks;
+        } else {
+            return adminLinks;
+        }
+    } else {
+        return guestLinks;
+    }
 }
 
 export default getHeaderLinks;

@@ -1,0 +1,52 @@
+.nav__el, .nav__el:link, .nav__el:visited, .nav__sub, .nav__sub:link, .nav__sub:visited {
+    padding: 8px 0px;
+    color: #f7f7f7;
+    font-size: 1.6rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s;
+    font-weight: 400;
+    background: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: border-bottom 0.2s, color 0.2s;
+    font-family: inherit;
+}
+
+.nav__sub, .nav__sub:link, .nav__sub:visited {
+    display: block;
+}
+
+.nav__sub:hover, .nav__sub:active {
+    border-bottom: 2px solid #e67e22;
+}
+
+.nav__el:not(:last-child) {
+    margin-right: 3rem;
+}
+
+@media only screen and (max-width: 37.5em) {
+    .nav__el:not(:last-child) {
+        margin-right: 0;
+        margin-bottom: 1.2rem;
+    }
+}
+
+.nav__el:focus {
+    outline: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #2F4858;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
