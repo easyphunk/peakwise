@@ -8,7 +8,10 @@ const authService = async (url, body, onSuccess, onFailure) => {
             }
         });
 
-        if(!authPromise.ok) throw new Error();
+        if (!authPromise.ok) {
+            const checkResult = await authPromise.json();
+            throw new Error(JSON.stringify(checkResult));
+        }
         const authToken = authPromise.headers.get('Authorization');
         document.cookie = `x-auth-token=${authToken}`;
 
@@ -25,7 +28,7 @@ const authService = async (url, body, onSuccess, onFailure) => {
             onFailure();
         }
     } catch (err) {
-        onFailure();
+        onFailure(err);
     }
 }
 

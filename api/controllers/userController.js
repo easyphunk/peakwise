@@ -6,7 +6,7 @@ const saltRounds = 10;
 
 exports.getAllUsers = async (req, res, next) => {
     try {
-        const users = await User.find();
+        const users = await User.find().sort('username');
         res.status(200).send(users);
     } catch (err) {
         next(err);
