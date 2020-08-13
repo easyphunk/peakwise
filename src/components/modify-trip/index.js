@@ -45,7 +45,6 @@ class ModifyTripPage extends Component {
 
     searchTrips = async (e) => {
         e.preventDefault();
-        this.getTrips();
         const searchStr = new RegExp(this.state.search, 'i');
         const searchedTrips = this.state.trips.filter(el => searchStr.test(el.name))
         this.setState({
