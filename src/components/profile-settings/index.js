@@ -178,7 +178,7 @@ class Profile extends Component {
                             <div className={styles.success__msg}>{this.state.successMsg !== '' ? this.state.successMsg : ''}</div>
                             <div className={styles.fail__msg}>{this.state.failMsg !== '' ? this.state.failMsg : ''}</div>
                             <div></div>
-                            <Button title="Save Password" stylePref={!this.state.photoChanged ? "disabled" : "orange"} toSubmit={true} onClick={(e) => this.changePassword(e)} disabled={(this.state.newPassword === '' || this.state.newRePassword === '')} />
+                            <Button title="Save Password" stylePref={(this.state.newPassword === '' || this.state.newRePassword === '') ? "disabled" : "orange"} toSubmit={true} onClick={(e) => this.changePassword(e)} disabled={(this.state.newPassword === '' || this.state.newRePassword === '')} />
                         </div>
                     </form>
                 </div>
