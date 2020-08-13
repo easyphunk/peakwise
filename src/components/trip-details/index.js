@@ -83,10 +83,9 @@ class TripDetails extends Component {
 
         if (Object.keys(trip).length === 0 && trip.constructor === Object) {
             return (
-                <div>Loading...</div>
+                <div></div>
             );
         }
-
 
         return (
             <section className={styles.wrapper}>
