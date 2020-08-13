@@ -11,6 +11,7 @@ import ProfilePage from './pages/profile-page';
 import ErrorPage from './pages/error-page';
 import UserContext from './UserContext';
 import logoutPage from './components/logout';
+import ModifyTripPage from './pages/modify-trip-page';
 
 const Navigation = () => {
     const context = useContext(UserContext);
@@ -40,6 +41,9 @@ const Navigation = () => {
                 </Route>
                 <Route path="/explore/:tripid">
                     {loggedIn ? (<TripDetailsPage />) : (<LoginPage />)}
+                </Route>
+                <Route path="/modify/">
+                    {admin ? (<ModifyTripPage />) : (<Redirect to='/error' />)}
                 </Route>
                 <Route path="/edit/:tripid">
                     {admin ? (<TripEditPage />) : (<Redirect to='/error' />)}

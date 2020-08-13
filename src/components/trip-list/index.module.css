@@ -8,3 +8,7 @@
     grid-gap: 7rem;
     overflow-y: auto;
 }
+
+.loading {
+    height: 100vh;
+}

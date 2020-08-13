@@ -1,0 +1,62 @@
+.loading {
+    height: 100vh;
+}
+
+.wrapper {
+    position: relative;
+    padding-top: 1%;
+    max-width: 100rem;
+    margin: 1% auto;
+    text-align: center;
+    background-color: rgba(47, 72, 88, 0.85);
+    overflow-y: auto;
+}
+
+.heading-secondary {
+    font-size: 2.25rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #E67E22;
+    letter-spacing: 0.1rem;
+    line-height: 1;
+    display: inline-block;
+    text-align: center;
+}
+
+.search__section {
+    position: relative;
+    justify-content: center;
+    padding: 0 7.8rem;
+}
+
+.trip__list {
+    padding: 1% 8%;
+    flex: 1;
+    position: relative;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 2rem;
+    overflow-y: auto;
+}
+
+.error__msg {
+    display: inline-block;
+    background-color: #ffd2d2;
+    color: #f20202;
+    font-size: 140%;
+    position: relative;
+}
+
+.success__msg {
+    display: inline-block;
+    color: #0f0;
+    font-size: 140%;
+}
+
+.fail__msg {
+    color: #f20202;
+    background-color: #fec1c1;
+    display: inline-block;
+    font-size: 140%;
+}
