@@ -14,7 +14,7 @@ const TripCard = (props) => {
         </div>
         <div className={styles.card__details}>
             <h4 className={styles["card__sub-heading"]}>{props.location}</h4>
-            <p className={styles.card__text}>{`${props.overview.slice(0, 100)}...`}</p>
+            <p className={styles.card__text}>{`${props.overview.slice(0, 155)}...`}</p>
             <div className={styles.card__data}><span><ion-icon className={styles.ion__icon} name="golf-outline"></ion-icon> {props.elevation} m</span></div>
             <div className={styles.card__data}><span><ion-icon className={styles.ion__icon} name="compass-outline"></ion-icon> Lat: {props.latitude} &deg;</span></div>
             <div className={styles.card__data}><span><ion-icon className={styles.ion__icon} name="golf-outline"></ion-icon> {props.elevationInFt} ft</span></div>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './index.module.css';
-import ProfileSettings from '../profile-settings'
+import ProfileSettings from '../profile-settings';
+import ProfileFavoritePeaks from '../profile-favorite-peaks';
 import { withRouter } from 'react-router-dom';
 
 
@@ -55,6 +56,7 @@ const Profile = () => {
                 </ul>
             </nav>
             {settings ? <ProfileSettings /> : ''}
+            {favorites ? <ProfileFavoritePeaks /> : ''}
         </div>
     )
 

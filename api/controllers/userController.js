@@ -15,7 +15,7 @@ exports.getAllUsers = async (req, res, next) => {
 
 exports.getUser = async (req, res, next) => {
     try {
-        const user = await User.findById(req.params.id);
+        const user = await User.findById(req.params.id).populate('tripsLiked');
         if (!user) {
             throw new AppError('No user found with this ID', 404);
         }
