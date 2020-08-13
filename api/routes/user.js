@@ -9,6 +9,10 @@ router
     .post(userController.createUser);
 
 router
+    .route('/detailed/:id')
+    .get(userController.getUserDetailed)
+
+router
     .route('/:id')
     .get(userController.getUser)
     .patch(userController.updateUser)

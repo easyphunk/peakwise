@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from './index.module.css';
 import Button from '../button';
 import Input from '../input';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import onChange from '../../utils/inputChangeHandler';
 import TripCardModify from '../trip-card-modify';
 

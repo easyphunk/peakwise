@@ -1,29 +1,28 @@
 import React, { Component } from 'react';
 import styles from './index.module.css';
 import TripCard from '../trip-card';
-import Button from '../button';
 import { withRouter } from 'react-router-dom';
 
-class Profile extends Component {
+class ProfilePeaks extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            favorites: []
+            tripList: []
         }
     }
 
     getUser = async (id) => {
-        const userPromise = await fetch(`http://localhost:9999/api/v1/users/${id}`);
+        const userPromise = await fetch(`http://localhost:9999/api/v1/users/detailed/${id}`);
         const user = await userPromise.json();
 
         this.setState({
-            favorites: user.tripsLiked
+            tripList: user[`trips${this.props.select === 'Liked' ? 'Liked' : 'Completed'}`]
         });
     }
 
     renderTrips = () => {
-        return this.state.favorites.map(el => {
+        return this.state.tripList.map(el => {
             return (
                 <TripCard key={el._id} {...el} />
             )
@@ -35,18 +34,22 @@ class Profile extends Component {
     }
 
     render() {
-        const { favorites } = this.state;
+        const { tripList } = this.state;
 
-        if (!favorites) {
+        if (tripList.length === 0) {
             return (
-                <div></div>
+                <div className={styles["user-view__content"]}>
+                    <div className={styles["user-view__form-container"]}>
+                        <h2 className={styles["heading-secondary"]}>{this.props.select === 'Liked' ? 'No favorite peaks' : 'No conquered peaks'}</h2>
+                    </div>
+                </div>
             )
         }
 
         return (
             <div className={styles["user-view__content"]}>
                 <div className={styles["user-view__form-container"]}>
-                    <h2 className={styles["heading-secondary"]}>Your favorite peaks</h2>
+                    <h2 className={styles["heading-secondary"]}>{this.props.select === 'Liked' ? 'Your favorite peaks' : 'Your conquered peaks'}</h2>
                     <div className={styles["form-user-data"]}>
                         <div className={styles.form__group}>
                             <div className={styles.card__list}>
@@ -62,4 +65,4 @@ class Profile extends Component {
     }
 }
 
-export default withRouter(Profile);
+export default withRouter(ProfilePeaks);

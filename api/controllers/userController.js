@@ -15,7 +15,20 @@ exports.getAllUsers = async (req, res, next) => {
 
 exports.getUser = async (req, res, next) => {
     try {
-        const user = await User.findById(req.params.id).populate('tripsLiked');
+        const user = await User.findById(req.params.id);
+        if (!user) {
+            throw new AppError('No user found with this ID', 404);
+        }
+
+        res.status(200).send(user);
+    } catch (err) {
+        next(err);
+    }
+};
+
+exports.getUserDetailed = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.params.id).populate('tripsLiked').populate('tripsCompleted');
         if (!user) {
             throw new AppError('No user found with this ID', 404);
         }
