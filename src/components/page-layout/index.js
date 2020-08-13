@@ -7,7 +7,9 @@ const PageLayout = (props) => {
     return (
         <div className={styles.wrapper}>
             <Header />
-            {props.children}
+            <div className={styles.wrapper_main}>
+                {props.children}
+            </div>
             <Footer />
         </div>
     )

@@ -34,7 +34,7 @@ const TripList = () => {
     if (!trips) {
         return (
             // TODO
-            <div>Loading...</div>
+            <div className={styles.loading}></div>
         )
     }
 
