@@ -79,7 +79,7 @@
     transition: all 0.3s;
 }
 
-.side-nav a:hover, .side-nav a:active {
+.side-nav a:hover, .NavLink {
     -webkit-transform: translateX(3px);
     transform: translateX(3px);
 }
