@@ -1,4 +1,4 @@
-.card-container {
+.card__container {
     padding: 1% 8%;
     flex: 1;
     position: relative;
@@ -9,6 +9,25 @@
     overflow-y: auto;
 }
 
+.sort__section {
+    text-align: center;
+    padding: 1% 8% 0% 8%;
+}
+
 .loading {
     height: 100vh;
+}
+
+.sort__label {
+    font-size: 1.6rem;
+    padding: 0.5rem 3em;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    display: inline-block;
+    position: relative;
+    font-weight: 400;
+    border: 1px solid #2F4858;
+    border-radius: 5%;
+    color: #fff;
 }
