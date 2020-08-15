@@ -111,14 +111,6 @@
     padding: 0 8rem;
 }
 
-.error__msg {
-    display: inline-block;
-    background-color: #ffd2d2;
-    color: #f20202;
-    font-size: 140%;
-    position: relative;
-}
-
 .photo__upload {
     position: relative;
     width: 20%;
