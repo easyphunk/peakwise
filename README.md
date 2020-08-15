@@ -1,68 +1,173 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Peakwise
 
-## Available Scripts
+![PEAKWISE](https://res.cloudinary.com/dghpuejpt/image/upload/c_scale,w_325/v1596312050/img/logo-black_a7wlcb.png)
 
-In the project directory, you can run:
+> Practice project with the MERN stack
+##
+> Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-### `npm start`
+### Table of Contents
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Peakwise](#peakwise)
+  - [> Bootstrapped with Create React App.](#blockquotebootstrapped-with-create-react-appblockquote)
+    - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+      - [Technologies](#technologies)
+      - [Libraries used](#libraries-used)
+      - [External API Reference](#external-api-reference)
+  - [Installation](#installation)
+  - [Starting the app](#starting-the-app)
+  - [To visit the app](#to-visit-the-app)
+  - [React app routes](#react-app-routes)
+  - [Server routes and methods](#server-routes-and-methods)
+  - [References](#references)
+  - [Author Info](#author-info)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## Description
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+What is Peakwise? 
+- A simple platform for the climbing enthusiasts to share informative articles about mountain peaks. You can create, modify and delete articles, pick favorites, mark the ones you have conquered.
 
-### `npm run build`
+#### Technologies
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React
+- Express
+- MongoDB
+- Node.js
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+#### Libraries used
+> For the React App
+- [create-react-app](https://github.com/facebook/create-react-app)
+- [concurrently](https://www.npmjs.com/package/concurrently)
+- [mapbox-gl](https://www.npmjs.com/package/mapbox-gl)
+- [serialize-error](https://www.npmjs.com/package/serialize-error)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+> For the server
+- [bcrypt](https://www.npmjs.com/package/bcrypt)
+- [cors](https://www.npmjs.com/package/cors)
+- [dotenv](https://www.npmjs.com/search?q=dotenv)
+- [express](https://www.npmjs.com/package/express)
+- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+- [mongoose](https://www.npmjs.com/package/mongoose)
+- [morgan](https://www.npmjs.com/package/morgan)
+- [validator](https://www.npmjs.com/package/validator)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### External API Reference
+- Cloudinary - https://cloudinary.com/
+- Mapbox - https://www.mapbox.com/
+  
+[Back To The Top](#peakwise)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Installation
+##
+Run **npm install** in root dir and in /api
+##
+* root dir = React app
+* /api = server
+##
+Create **.env** and **api.env** in the root dir.
+##
+Use **.env** for the React App env variables. Set up the following:
+    
+    REACT_APP_MAPBOX_TOKEN= 'Your Default public token from Mapbox'
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+##
+Use **api.env** for the server env variables. Initial setup:
 
-## Learn More
+    NODE_ENV= 'development'
+    PORT= 'port number'
+    DATABASE= 'mongoDB db url with <PASSWORD> as a placeholder for the password string'
+    DB_PASS= 'mongoDB db password'
+    SECRET= 'jwt secret key'
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**api.env** example:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    NODE_ENV=development
+    PORT=9999
+    DATABASE=mongodb+srv://foo:<PASSWORD>@cluster0.000bar.mongodb.net/foo?retryWrites=true&w=majority)
+    DB_PASS=lorem123
+    SECRET=ipsum456
+** The React app will run by default on port 3000
 
-### Code Splitting
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Starting the app
+Run **npm start** in root dir to start in development mode. Both the React app and the server will be started simultaneously.
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## To visit the app
 
-### Making a Progressive Web App
+> http://localhost:3000/
+##
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## React app routes
+For regular users:
+> http://localhost:3000/login
+> ##
+> http://localhost:3000/register
+> ##
+> http://localhost:3000/explore
+> ##
+> http://localhost:3000/profile/*
+> ##
+> http://localhost:3000/details/*
+##
 
-### Advanced Configuration
+'admin' users can access the above and:
+> http://localhost:3000/create-article
+> ##
+> http://localhost:3000/edit/*
+> ##
+> http://localhost:3000/modify
+> ##
+* To access 'admin' routes, update the respective user's *userAccess* property to 'admin' directly in the databse, or with a PATCH request to http://localhost:9999/api/v1/users/:userid
+#
+## Server routes and methods
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+> http://localhost:9999/api/v1/users
+> ##
+> >/ - GET, POST
+> ##
+> >/detailed/:id - GET
+> ##
+> >/:id - GET, PATCH, DELETE
+> ##
+> >/register - POST
+> ##
+> >/login - POST
+> ##
+> >/verify - POST
 
-### Deployment
+> http://localhost:9999/api/v1/trips
+> ##
+> / - GET, POST
+> ##
+> /:id - GET, PATCH, DELETE
+> ##
+> /top-trips - GET
+> ##
+> /trip-stats - GET
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+##
+[Back To The Top](#peakwise)
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## References
+[SoftUni ReactJS Course](https://softuni.bg/trainings/3023/reactjs--june-2020/internal)
+##
+
+
+---
+
+## Author Info
+
+- LinkedIn - [Svetoslav Popov](https://www.linkedin.com/in/s-popov/)
+
+[Back To The Top](#peakwise)
