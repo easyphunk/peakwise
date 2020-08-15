@@ -7,6 +7,8 @@ import UserContext from '../../UserContext';
 import TripMap from '../trip-map';
 
 class TripDetails extends Component {
+    _isMounted = false;
+
     constructor(props) {
         super(props);
 
@@ -48,6 +50,7 @@ class TripDetails extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         window.scrollTo(0, 0);
         this.getTrip(this.props.match.params.tripid);
     }
@@ -56,6 +59,10 @@ class TripDetails extends Component {
         fetch(`http://localhost:9999/api/v1/users/${this.context.user._id}`)
             .then(res => res.json())
             .then(json => this.context.user = json);
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     tripManager = async (e, action) => {
