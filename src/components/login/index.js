@@ -22,6 +22,10 @@ class LoginPage extends Component {
 
     static contextType = UserContext;
 
+    componentDidMount() {
+        document.title = 'Peakwise: Login';
+    }
+
     handleSubmit = async (event) => {
         event.preventDefault();
         const { username, password } = this.state;

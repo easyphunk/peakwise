@@ -25,6 +25,10 @@ class RegisterPage extends Component {
 
     static contextType = UserContext;
 
+    componentDidMount() {
+        document.title = 'Peakwise: Register';
+    }
+
     handleSubmit = async (event) => {
         event.preventDefault();
         const { username, email, password, rePassword } = this.state;
@@ -69,7 +73,6 @@ class RegisterPage extends Component {
             }
         );
     }
-
 
     render() {
 
