@@ -9,7 +9,7 @@ const LinkAdmin = (props) => {
                 <span>{props.title}</span>
                 <div className={styles["dropdown-content"]}>
                     <Link className={styles.nav__sub} to="/create-article">Create Article</Link>
-                    <Link className={styles.nav__sub} to="/modify">Modify Article</Link>
+                    <Link className={styles.nav__sub} to="/modify">Modify Articles</Link>
                 </div>
             </div>
         </div>
