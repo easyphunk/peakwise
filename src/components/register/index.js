@@ -7,6 +7,7 @@ import onChange from '../../utils/inputChangeHandler';
 import { withRouter } from 'react-router-dom';
 import authService from '../../utils/authService';
 import UserContext from '../../UserContext';
+import ErrorMessage from '../error-message';
 import { serializeError } from 'serialize-error';
 
 class RegisterPage extends Component {
@@ -58,11 +59,11 @@ class RegisterPage extends Component {
                     })
                 } else if (errMsg.includes('index: username')) {
                     this.setState({
-                        errorMsg: 'This username is already registered.'
+                        errorMsg: 'This username is already in use.'
                     })
                 } else if (errMsg.includes('index: email')) {
                     this.setState({
-                        errorMsg: 'This email is already registered.'
+                        errorMsg: 'This email is already in use.'
                     })
                 }
             }
@@ -94,7 +95,7 @@ class RegisterPage extends Component {
                             )
                         })
                     }
-                    <div className={styles.error__msg}>{this.state.errorMsg !== '' ? this.state.errorMsg : ''}</div>
+                    <ErrorMessage that={this} />
                     <p></p>
                     <Button title="Register" href="#" stylePref="regular" toSubmit={true} />
                 </form>

@@ -7,6 +7,7 @@ import onChange from '../../utils/inputChangeHandler';
 import { withRouter } from 'react-router-dom';
 import authService from '../../utils/authService';
 import UserContext from '../../UserContext';
+import ErrorMessage from '../error-message';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -71,7 +72,7 @@ class LoginPage extends Component {
                             )
                         })
                     }
-                    <div className={styles.error__msg}>{this.state.errorMsg !== '' ? this.state.errorMsg : ''}</div>
+                    <ErrorMessage that={this} />
                     <p></p>
                     <Button title="Login" href="#" stylePref="regular" toSubmit={true} onSumbit={(e) => this.handleSubmit(e)} />
                 </form>

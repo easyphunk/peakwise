@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 import tripService from '../../utils/tripService';
 import TripMap from '../trip-map';
 import ButtonImageUpload from '../button-img-upload';
+import ErrorMessage from '../error-message';
 
 
 class EditTripPage extends Component {
@@ -128,7 +129,7 @@ class EditTripPage extends Component {
                                     })}
                                 </div>
                             }
-                            <div className={styles.error__msg}>{this.state.errorMsg !== '' ? this.state.errorMsg : ''}</div>
+                            <ErrorMessage that={this} />
                             <div className={styles.form__group}>
                                 <Button title="Save changes" href="#" stylePref="regular" toSubmit={true} />
                             </div>
