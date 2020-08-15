@@ -5,6 +5,8 @@ import styles from './index.module.css';
 mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_TOKEN}`;
 
 class TripMap extends React.Component {
+    _isMounted = false;
+
     constructor(props) {
         super(props);
 
@@ -17,6 +19,8 @@ class TripMap extends React.Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
+
         const pin = {
             lat: this.props.lat,
             lng: this.props.lng
@@ -44,6 +48,10 @@ class TripMap extends React.Component {
                 .addTo(map);
             });
         }
+    }
+    
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     render() {
