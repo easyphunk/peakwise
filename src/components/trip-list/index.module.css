@@ -11,7 +11,10 @@
 
 .sort__section {
     text-align: center;
-    padding: 1% 8% 0% 8%;
+    padding: 1% 0% 0% 0%;
+    margin: 0 8% 0 8%;
+    border: 1px solid #2F4858;
+    background-color: #2f48587e;
 }
 
 .loading {
@@ -20,14 +23,12 @@
 
 .sort__label {
     font-size: 1.6rem;
-    padding: 0.5rem 3em;
-    margin-right: 2rem;
+    padding-right: 2%;
     margin-bottom: 2rem;
     text-transform: uppercase;
     display: inline-block;
     position: relative;
     font-weight: 400;
-    border: 1px solid #2F4858;
-    border-radius: 5%;
     color: #fff;
+    cursor: pointer;
 }
