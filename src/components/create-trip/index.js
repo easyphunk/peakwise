@@ -39,6 +39,7 @@ class EditTripPage extends Component {
     }
 
     componentDidMount() {
+        document.title = 'Peakwise: Create Article'
         this._isMounted = true;
         window.scrollTo(0, 0);
     }

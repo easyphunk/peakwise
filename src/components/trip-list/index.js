@@ -48,6 +48,7 @@ const TripList = () => {
     }
 
     useEffect(() => {
+        document.title = 'Peakwise: Explore';
         getTrips();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])

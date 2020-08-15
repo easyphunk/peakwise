@@ -58,12 +58,13 @@ class EditTripPage extends Component {
         window.scrollTo(0, 0);
         this.getTrip(this.props.match.params.tripid);
     }
-
+    
     componentWillUnmount() {
         this._isMounted = false;
     }
-
+    
     componentDidUpdate() {
+        document.title = `Peakwise: Edit > ${this.state.name}`;
         if (!this.state.loadMap) {
             this.setState({
                 loadMap: true

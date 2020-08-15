@@ -40,6 +40,7 @@ class ModifyTripPage extends Component {
     }
 
     componentDidMount() {
+        document.title = 'Peakwise: Modify Articles';
         this.getTrips();
     }
 

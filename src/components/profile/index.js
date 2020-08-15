@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './index.module.css';
 import ProfileSettings from '../profile-settings';
@@ -37,6 +37,10 @@ const Profile = () => {
                 break;
         }
     }
+
+    useEffect(() => {
+        document.title = 'Peakwise: Profile';
+    }, [])
 
     return (
         <div className={styles["user-view"]}>

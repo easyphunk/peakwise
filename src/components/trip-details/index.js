@@ -53,6 +53,7 @@ class TripDetails extends Component {
     }
 
     componentDidUpdate = async () => {
+        document.title = `Peakwise: ${this.state.trip.name}`;
         fetch(`http://localhost:9999/api/v1/users/${this.context.user._id}`)
             .then(res => res.json())
             .then(json => this.context.user = json);
