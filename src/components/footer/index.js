@@ -9,7 +9,7 @@ const Footer = () => {
             <div className={styles.footer__logo}><Logo color="white" href="/" /></div>
             <ul className={styles.footer__nav}>
                 <li><LinkComponent title="About us" href="#" /></li>
-                <li><LinkComponent title="Download apps" href="#" /></li>
+                <li><LinkComponent title="Download app" href="#" /></li>
                 <li><LinkComponent title="Contact" href="#" /></li>
             </ul>
             <p className={styles.footer__copyright}>PEAKWISE. Created by Svetoslav Popov. Practice project with the MERN stack</p>

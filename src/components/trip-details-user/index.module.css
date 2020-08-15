@@ -2,10 +2,9 @@
     width: 150px;
     height: 170px;
     padding: 1% 1%;
-    background-color: #f7f7f7;
     border-radius: 3px;
     -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
-    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    box-shadow: 1rem 1rem 3rem rgba(252, 247, 247, 0.15);
     scroll-snap-align: center;
     display: -webkit-box;
     display: -ms-flexbox;
