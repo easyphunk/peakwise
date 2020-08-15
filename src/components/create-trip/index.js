@@ -48,7 +48,18 @@ class EditTripPage extends Component {
 
     handleSubmit = async (event) => {
         event.preventDefault();
+        this.setState({
+            errorMsg: ''
+        });
+
         const newTripObj = this.state;
+
+        if (this.state.coverImage === '' || this.state.image1 === '' || this.state.image2 === '' || this.state.image2 === '') {
+            this.setState({
+                errorMsg: 'Please make sure cover and thumbnail images have been selected.'
+            });
+            return;
+        }
 
         await tripService('http://localhost:9999/api/v1/trips', { ...newTripObj }, 'POST',
             (tripId) => {
@@ -56,7 +67,7 @@ class EditTripPage extends Component {
             }, () => {
                 this.setState({
                     errorMsg: 'Please make sure all details are filled.'
-                })
+                });
             }
         )
     }
