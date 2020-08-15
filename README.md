@@ -10,7 +10,7 @@
 ### Table of Contents
 
 - [Peakwise](#peakwise)
-  - [> Bootstrapped with Create React App.](#blockquotebootstrapped-with-create-react-appblockquote)
+  - [Bootstrapped with Create React App.](#blockquotebootstrapped-with-create-react-appblockquote)
     - [Table of Contents](#table-of-contents)
   - [Description](#description)
       - [Technologies](#technologies)
