@@ -147,7 +147,7 @@ class TripDetails extends Component {
                     <p className={styles.info__text}>{trip.gettingThere}</p>
                 </section>
                 <section className={styles["section-map"]}>
-                    <TripMap lng={trip.longitude} lat={trip.latitude} zoom={11} />
+                    <TripMap lng={trip.longitude} lat={trip.latitude} zoom={11} pin={true} />
                 </section>
                 {
                     trip.completedBy.length === 0 ? '' :
