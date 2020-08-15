@@ -21,7 +21,7 @@ const TripCard = (props) => {
             <div className={styles.card__data}><span><ion-icon className={styles.ion__icon} name="compass-outline"></ion-icon> Lon: {props.longitude} &deg;</span></div>
         </div>
         <div className={styles.card__footer}>
-            <p><span className={styles["card__footer-value"]}>{props.completedBy.length}</span> <span className={styles["card__footer-text"]}>{props.completedBy.length > 1 ? 'have conquered this peak' : 'has conquered this peak'}</span>
+            <p><span className={styles["card__footer-value"]}>{props.completedBy.length}</span> <span className={styles["card__footer-text"]}>{props.completedBy.length === 1 ? 'has conquered this peak' : 'have conquered this peak' }</span>
             </p>
             <p className={styles.card__likes}><span className={styles["card__footer-value"]}>{props.likes}</span> <span
                 className={styles["card__footer-text"]}>likes</span></p>
