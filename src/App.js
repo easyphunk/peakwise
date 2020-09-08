@@ -42,7 +42,7 @@ class App extends Component {
             return;
         }
 
-        fetch('http://localhost:9999/api/v1/users/verify', {
+        fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/verify`, {
             method: 'POST',
             body: JSON.stringify({
                 token

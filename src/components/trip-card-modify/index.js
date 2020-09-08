@@ -10,7 +10,7 @@ const TripCardModify = (props) => {
     const deleteTrip = async (e) => {
         e.preventDefault();
         setDelete(true);
-        const result = await fetch(`http://localhost:9999/api/v1/trips/${props._id}`, {
+        const result = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/trips/${props._id}`, {
             method: 'DELETE'
         })
         if (!result.ok) {

@@ -10,7 +10,8 @@
 ### Table of Contents
 
 - [Peakwise](#peakwise)
-  - [Table of Contents](#table-of-contents)
+  - [> Bootstrapped with Create React App.](#blockquotebootstrapped-with-create-react-appblockquote)
+    - [Table of Contents](#table-of-contents)
   - [Description](#description)
       - [Technologies](#technologies)
       - [Libraries used](#libraries-used)
@@ -75,6 +76,7 @@ Create **.env** and **api.env** in the root dir.
 Use **.env** for the React App env variables. Set up the following:
     
     REACT_APP_MAPBOX_TOKEN= 'Your Default public token from Mapbox'
+    REACT_APP_API_URL= 'http://localhost:9999' (if you use the API in /api to communicate with the DB)
 
 ##
 Use **api.env** for the server env variables. Initial setup:

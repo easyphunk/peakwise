@@ -45,7 +45,7 @@ class RegisterPage extends Component {
             return;
         }
 
-        await authService('http://localhost:9999/api/v1/users/register',
+        await authService(`${process.env.REACT_APP_API_URL}/api/v1/users/register`,
             {
                 username,
                 email,

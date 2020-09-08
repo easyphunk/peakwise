@@ -63,7 +63,7 @@ class EditTripPage extends Component {
             return;
         }
 
-        await tripService('http://localhost:9999/api/v1/trips', { ...newTripObj }, 'POST',
+        await tripService(`${process.env.REACT_APP_API_URL}/api/v1/trips`, { ...newTripObj }, 'POST',
             (tripId) => {
                 this.props.history.push(`/explore/${tripId}`);
             }, () => {

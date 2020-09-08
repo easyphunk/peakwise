@@ -25,7 +25,7 @@ class Profile extends Component {
     }
 
     getUser = async (id) => {
-        const userPromise = await fetch(`http://localhost:9999/api/v1/users/${id}`);
+        const userPromise = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/${id}`);
         const user = await userPromise.json();
 
         this.setState({
@@ -61,7 +61,7 @@ class Profile extends Component {
     savePhoto = async (e) => {
         e.preventDefault();
         try {
-            await fetch(`http://localhost:9999/api/v1/users/${this.props.match.params.userid}`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/${this.props.match.params.userid}`, {
                 method: `PATCH`,
                 body: JSON.stringify({
                     profilePhoto: this.state.profilePhoto
@@ -102,7 +102,7 @@ class Profile extends Component {
                 })
             } else {
                 try {
-                    const promise = await fetch(`http://localhost:9999/api/v1/users/${this.props.match.params.userid}`, {
+                    const promise = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/${this.props.match.params.userid}`, {
                         method: `PATCH`,
                         body: JSON.stringify({
                             currPassword: this.state.currPassword,

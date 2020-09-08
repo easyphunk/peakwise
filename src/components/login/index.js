@@ -30,7 +30,7 @@ class LoginPage extends Component {
         event.preventDefault();
         const { username, password } = this.state;
 
-        await authService('http://localhost:9999/api/v1/users/login',
+        await authService(`${process.env.REACT_APP_API_URL}/api/v1/users/login`,
             {
                 username,
                 password

@@ -20,7 +20,7 @@ class TripDetails extends Component {
     static contextType = UserContext;
 
     getTrip = async (id) => {
-        const tripPromise = await fetch(`http://localhost:9999/api/v1/trips/${id}`);
+        const tripPromise = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/trips/${id}`);
 
         if (!tripPromise.ok) {
             this.props.history.push('/error');
@@ -54,7 +54,7 @@ class TripDetails extends Component {
 
     componentDidUpdate = async () => {
         document.title = `Peakwise: ${this.state.trip.name}`;
-        fetch(`http://localhost:9999/api/v1/users/${this.context.user._id}`)
+        fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/${this.context.user._id}`)
             .then(res => res.json())
             .then(json => this.context.user = json);
     }
@@ -62,7 +62,7 @@ class TripDetails extends Component {
     tripManager = async (e, action) => {
         e.preventDefault();
 
-        const result = await fetch(`http://localhost:9999/api/v1/trips/${this.props.match.params.tripid}?${action}=${this.context.user._id}`, {
+        const result = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/trips/${this.props.match.params.tripid}?${action}=${this.context.user._id}`, {
             method: 'PATCH'
         });
 

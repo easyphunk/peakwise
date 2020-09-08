@@ -13,7 +13,7 @@ class ProfilePeaks extends Component {
     }
 
     getUser = async (id) => {
-        const userPromise = await fetch(`http://localhost:9999/api/v1/users/detailed/${id}`);
+        const userPromise = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/detailed/${id}`);
         const user = await userPromise.json();
 
         this.setState({

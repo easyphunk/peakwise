@@ -28,7 +28,7 @@ const TripList = () => {
     }
 
     const getTrips = async () => {
-        const tripsPromise = await fetch('http://localhost:9999/api/v1/trips');
+        const tripsPromise = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/trips`);
 
         if (!tripsPromise.ok) {
             history.push('/error');

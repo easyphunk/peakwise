@@ -36,7 +36,7 @@ class EditTripPage extends Component {
     }
 
     getTrip = async (id) => {
-        const tripPromise = await fetch(`http://localhost:9999/api/v1/trips/${id}`);
+        const tripPromise = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/trips/${id}`);
 
         if (!tripPromise.ok) {
             this.props.history.push('/error');
@@ -76,7 +76,7 @@ class EditTripPage extends Component {
         event.preventDefault();
         const updatedTripObj = this.state;
 
-        await tripService(`http://localhost:9999/api/v1/trips/${this.props.match.params.tripid}`, { ...updatedTripObj }, 'PATCH',
+        await tripService(`${process.env.REACT_APP_API_URL}/api/v1/trips/${this.props.match.params.tripid}`, { ...updatedTripObj }, 'PATCH',
             (tripId) => {
                 this.props.history.push(`/explore/${tripId}`);
             }, () => {
