@@ -41,7 +41,7 @@ What is Peakwise?
 #### Libraries used
 > For the React App
 - [create-react-app](https://github.com/facebook/create-react-app)
-- [react-router-dom](https://https://www.npmjs.com/package/react-router-dom)
+- [react-router-dom](https://www.npmjs.com/package/react-router-dom)
 - [concurrently](https://www.npmjs.com/package/concurrently)
 - [mapbox-gl](https://www.npmjs.com/package/mapbox-gl)
 - [serialize-error](https://www.npmjs.com/package/serialize-error)
