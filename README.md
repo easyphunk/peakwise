@@ -78,6 +78,8 @@ Use **.env** for the React App env variables. Set up the following:
     
     REACT_APP_MAPBOX_TOKEN= 'Your Default public token from Mapbox'
     REACT_APP_API_URL= 'http://localhost:9999' (if you use the API in /api to communicate with the DB)
+    REACT_APP_CLOUDINARY_CLOUDNAME='Your Cloudinary cloud name'
+    REACT_APP_CLOUDINARY_UPLOADPRESET='The upload preset for this cloud'
 
 ##
 Use **api.env** for the server env variables. Initial setup:
