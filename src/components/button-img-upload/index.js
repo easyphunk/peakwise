@@ -7,8 +7,8 @@ const ButtonImageUpload = ({title, targetImg, that}) => {
         e.preventDefault();
         let widget = window.cloudinary.createUploadWidget(
             {
-                cloudName: 'dghpuejpt',
-                uploadPreset: 'fiwhg3t9',
+                cloudName: process.env.REACT_APP_CLOUDINARY_CLOUDNAME,
+                uploadPreset: process.env.REACT_APP_CLOUDINARY_UPLOADPRESET
             },
             (error, result) => {
                 if (result.event === 'success') {
