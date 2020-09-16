@@ -50,7 +50,7 @@ const Profile = () => {
                     <li><Link to="#" name="favorites" onClick={(e) => handleClick(e)}>Favorite Peaks</Link></li>
                     <li><Link to="#" name="conquered" onClick={(e) => handleClick(e)}>Conquered Peaks</Link></li>
                     <li className={styles.line}>&nbsp;</li>
-                    <li><a href="/logout" name="logout">Logout</a></li>
+                    <li><Link to="/logout" name="logout">Logout</Link></li>
                 </ul>
             </nav>
             {settings ? <ProfileSettings /> : ''}
