@@ -4,6 +4,8 @@
 
 > Practice project with the MERN stack
 ##
+> Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 ---
 
 ### Table of Contents
