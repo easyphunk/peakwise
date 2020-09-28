@@ -4,12 +4,6 @@
 
 > Practice project with the MERN stack
 ##
-> Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-#### You can test the app at https://peakwise.herokuapp.com/
-##### Log-in with user/user - for regular user access.
-##### Log-in with admin/admin - for 'admin' access - check out the "Manage Content" menu.
-##### > Database is flushed every 24 hours and content restored to its initial state.
 ---
 
 ### Table of Contents
